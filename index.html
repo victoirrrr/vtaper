@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#141419">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>V-Taper</title>
@@ -16,106 +15,143 @@
     --ink:#e9e9ef; --dim:#8b8b98; --faint:#5a5a68;
     --hot:#ff5a3d; --hotdim:rgba(255,90,61,.15);
     --cool:#4a9eff; --cooldim:rgba(74,158,255,.14);
-    --good:#3ddc84;
+    --good:#3ddc84; --gooddim:rgba(61,220,132,.13);
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html{-webkit-text-size-adjust:100%}
-  body{
-    background:var(--bg);color:var(--ink);
+  body{background:var(--bg);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5;padding-bottom:96px;-webkit-font-smoothing:antialiased;
-  }
+    line-height:1.5;padding-bottom:92px;-webkit-font-smoothing:antialiased}
   .wrap{max-width:540px;margin:0 auto;padding:18px 15px 0}
   .page{display:none}
   .page.on{display:block}
+  input,button,select{font-family:inherit}
 
-  .eyeb{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
-  h2.big{font-size:29px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:#fff;margin-bottom:5px}
+  .eyeb{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+  h2.big{font-size:27px;font-weight:800;letter-spacing:-.9px;line-height:1.06;color:#fff;margin-bottom:4px}
   h2.big em{font-style:normal;color:var(--hot)}
-  .sub{font-size:12.5px;color:var(--dim);line-height:1.55;margin-bottom:20px}
+  .sub{font-size:12.5px;color:var(--dim);line-height:1.5;margin-bottom:18px}
 
-  .card{background:var(--card);border-radius:16px;padding:15px;margin-bottom:13px}
-  .card h3{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+  .card{background:var(--card);border-radius:16px;padding:15px;margin-bottom:12px}
+  .card h3{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
+    margin-bottom:12px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .card h3 span.r{color:var(--hot);letter-spacing:.04em;font-size:11px}
 
-  /* lane */
-  .lane{position:relative;padding-left:26px}
-  .lane:before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;
-    background:repeating-linear-gradient(180deg,var(--line) 0 7px,transparent 7px 13px)}
-  .mk{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--card2);
-    cursor:pointer;border-radius:8px}
-  .mk:last-child{border-bottom:none}
-  .mk .pin{width:9px;height:9px;border-radius:50%;flex:0 0 9px;background:var(--line);margin-left:-26px}
-  .mk .pin.hot{background:var(--hot);box-shadow:0 0 0 4px var(--hotdim)}
-  .mk .pin.cool{background:var(--cool);box-shadow:0 0 0 4px var(--cooldim)}
-  .mk .mdy{font-size:10px;letter-spacing:.14em;color:var(--faint);width:32px;flex:0 0 32px;text-transform:uppercase}
-  .mk .mnm{flex:1;font-size:13.5px;font-weight:550;min-width:0}
-  .mk .mnm small{display:block;font-size:10.5px;color:var(--faint);font-weight:400;margin-top:1px}
-  .mk .mnm.off{color:var(--faint);font-weight:400}
-  .mk.sel{background:var(--card2)}
-  .mtg{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
-    padding:3px 7px;border-radius:99px;white-space:nowrap;flex:0 0 auto}
-  .mtg.c{background:var(--hotdim);color:#ff8a72}
-  .mtg.a{background:var(--cooldim);color:#7bb8ff}
-  .mtg.g{background:rgba(61,220,132,.13);color:#6fe0a4}
-  .mtg.n{background:var(--card2);color:var(--faint)}
+  /* ring banner */
+  .ring{display:flex;align-items:center;gap:16px;background:var(--card);border-radius:16px;padding:15px;margin-bottom:12px}
+  .ring svg{flex:0 0 92px}
+  .ring .rt .rv{font-size:23px;font-weight:800;letter-spacing:-.6px;line-height:1.1}
+  .ring .rt .rl{font-size:12px;color:var(--dim);margin-top:2px}
+  .ring .rt .rs{font-size:11.5px;color:var(--hot);font-weight:700;margin-top:6px}
 
-  /* stat row */
-  .stats{display:flex;gap:8px;margin-bottom:13px}
-  .st{flex:1;background:var(--card);border-radius:14px;padding:12px 8px;text-align:center}
-  .st .sv{font-size:19px;font-weight:800;letter-spacing:-.5px}
-  .st .sl{font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);margin-top:3px}
-
-  /* tracker */
-  .tk{display:flex;align-items:center;gap:13px;padding:14px 4px;border-bottom:1px solid var(--card2);cursor:pointer}
+  /* tick rows */
+  .tk{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--card2);cursor:pointer}
   .tk:last-child{border-bottom:none}
-  .box{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);flex:0 0 26px;
-    display:grid;place-items:center;font-size:14px;color:transparent;transition:.15s}
+  .box{width:25px;height:25px;border-radius:8px;border:2px solid var(--line);flex:0 0 25px;
+    display:grid;place-items:center;font-size:13px;color:transparent;transition:.15s}
   .tk.done .box{background:var(--hot);border-color:var(--hot);color:#fff}
-  .tk .tl{flex:1;font-size:14px;font-weight:550}
+  .tk .tl{flex:1;font-size:13.5px;font-weight:550;min-width:0}
+  .tk .tl small{display:block;font-size:10.5px;color:var(--faint);font-weight:400;margin-top:1px}
   .tk.done .tl{color:var(--dim)}
-  .tk .th{font-size:11px;color:var(--faint)}
+  .tk .tv{font-size:11px;color:var(--faint);white-space:nowrap}
 
-  .strip{display:flex;gap:5px;margin-top:14px}
-  .cell{flex:1;height:46px;border-radius:8px;background:var(--card2);display:flex;
-    flex-direction:column;align-items:center;justify-content:center;gap:3px}
+  /* macro tally */
+  .tally{display:flex;gap:7px;margin-top:13px}
+  .tal{flex:1;background:var(--card2);border-radius:11px;padding:9px 5px;text-align:center}
+  .tal .tv2{font-size:15px;font-weight:800;letter-spacing:-.3px}
+  .tal .tl2{font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:2px}
+  .tal.hit .tv2{color:var(--good)}
+
+  /* exercise log */
+  .exr{padding:11px 0;border-bottom:1px solid var(--card2)}
+  .exr:last-child{border-bottom:none}
+  .exr .eh{display:flex;align-items:center;gap:11px;cursor:pointer}
+  .exr .ebx{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);flex:0 0 22px;
+    display:grid;place-items:center;font-size:12px;color:transparent}
+  .exr.done .ebx{background:var(--good);border-color:var(--good);color:#0d1f14}
+  .exr .enm{flex:1;font-size:13.5px;font-weight:600;min-width:0}
+  .exr .enm small{display:block;font-size:10.5px;color:var(--faint);font-weight:400;margin-top:1px}
+  .exr .esr{font-size:10.5px;font-weight:700;color:var(--hot);background:var(--hotdim);
+    padding:2px 7px;border-radius:6px;white-space:nowrap;flex:0 0 auto}
+  .exr .inp{display:flex;gap:7px;margin:9px 0 0 33px}
+  .exr .inp input{flex:1;min-width:0;background:var(--card2);border:1px solid var(--line);
+    color:var(--ink);border-radius:8px;padding:7px 9px;font-size:12.5px}
+  .exr .inp input:focus{outline:none;border-color:var(--cool)}
+  .exr .pr{font-size:10px;color:var(--good);margin:6px 0 0 33px;font-weight:700}
+
+  /* numeric steppers */
+  .num{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--card2)}
+  .num:last-child{border-bottom:none}
+  .num .nl{flex:1;font-size:13.5px;font-weight:550}
+  .num .nl small{display:block;font-size:10.5px;color:var(--faint);font-weight:400;margin-top:1px}
+  .num .ctl{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .num .ctl button{width:29px;height:29px;border-radius:9px;border:1px solid var(--line);
+    background:var(--card2);color:var(--ink);font-size:16px;line-height:1;cursor:pointer}
+  .num .ctl button:active{background:var(--hot);border-color:var(--hot)}
+  .num .ctl .nv{min-width:56px;text-align:center;font-size:14px;font-weight:800}
+  .num .ctl .nv.hit{color:var(--good)}
+
+  .rate{display:flex;gap:6px;margin-top:9px}
+  .rate button{flex:1;padding:9px 0;border-radius:10px;border:1px solid var(--line);
+    background:var(--card2);color:var(--dim);font-size:13px;font-weight:700;cursor:pointer}
+  .rate button.on{background:var(--cool);border-color:var(--cool);color:#08182c}
+
+  /* week strip */
+  .strip{display:flex;gap:5px;margin-top:12px}
+  .cell{flex:1;height:44px;border-radius:8px;background:var(--card2);display:flex;
+    flex-direction:column;align-items:center;justify-content:center;gap:2px}
   .cell.full{background:var(--hot)}
-  .cell.part{background:rgba(255,90,61,.32)}
+  .cell.part{background:rgba(255,90,61,.3)}
   .cell.today{outline:2px solid var(--cool);outline-offset:1px}
   .cell .cd{font-size:9px;font-weight:800;color:var(--faint)}
   .cell.full .cd,.cell.part .cd{color:#fff}
   .cell .ck{font-size:11px;font-weight:700;color:var(--faint)}
   .cell.full .ck,.cell.part .ck{color:#fff}
 
-  .banner{background:linear-gradient(135deg,#ff5a3d,#ff8a3d);border-radius:16px;padding:15px;margin-bottom:13px;color:#fff}
-  .banner .bv{font-size:26px;font-weight:800;letter-spacing:-.6px}
-  .banner .bl{font-size:12px;opacity:.92;margin-top:2px}
+  /* plan side */
+  .mk{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--card2);cursor:pointer}
+  .mk:last-child{border-bottom:none}
+  .mk .pin{width:9px;height:9px;border-radius:50%;flex:0 0 9px;background:var(--line)}
+  .mk .pin.hot{background:var(--hot);box-shadow:0 0 0 4px var(--hotdim)}
+  .mk .pin.cool{background:var(--cool);box-shadow:0 0 0 4px var(--cooldim)}
+  .mk .pin.now{background:var(--good);box-shadow:0 0 0 4px var(--gooddim)}
+  .mk .mdy{font-size:10px;letter-spacing:.14em;color:var(--faint);width:32px;flex:0 0 32px;text-transform:uppercase}
+  .mk .mnm{flex:1;font-size:13.5px;font-weight:550;min-width:0}
+  .mk .mnm small{display:block;font-size:10.5px;color:var(--faint);font-weight:400;margin-top:1px}
+  .mk .mnm.off{color:var(--faint);font-weight:400}
+  .mtg{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+    padding:3px 7px;border-radius:99px;white-space:nowrap;flex:0 0 auto}
+  .mtg.c{background:var(--hotdim);color:#ff8a72}
+  .mtg.a{background:var(--cooldim);color:#7bb8ff}
+  .mtg.g{background:var(--gooddim);color:#6fe0a4}
+  .mtg.n{background:var(--card2);color:var(--faint)}
 
-  /* exercises */
-  .ex{display:flex;gap:11px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--card2)}
+  .ex{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--card2)}
   .ex:last-child{border-bottom:none}
-  .ex .ix{font-size:10px;font-weight:800;color:var(--faint);flex:0 0 18px;padding-top:3px}
+  .ex .ix{font-size:10px;font-weight:800;color:var(--faint);flex:0 0 16px;padding-top:3px}
   .ex .eb{flex:1;min-width:0}
   .ex .et{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-  .ex .en{font-size:14px;font-weight:650}
-  .ex .esr{font-size:11px;font-weight:700;color:var(--hot);background:var(--hotdim);padding:2px 7px;border-radius:6px;white-space:nowrap}
+  .ex .en{font-size:13.5px;font-weight:650}
+  .ex .es{font-size:10.5px;font-weight:700;color:var(--hot);background:var(--hotdim);padding:2px 7px;border-radius:6px}
   .ex .enote{font-size:11.5px;color:var(--dim);margin-top:3px;line-height:1.45}
   .ex.key .en{color:#7bb8ff}
-  .vt{font-size:8.5px;font-weight:800;letter-spacing:.1em;color:#7bb8ff;background:var(--cooldim);padding:2px 6px;border-radius:5px;text-transform:uppercase}
+  .vt{font-size:8.5px;font-weight:800;letter-spacing:.1em;color:#7bb8ff;background:var(--cooldim);
+    padding:2px 6px;border-radius:5px;text-transform:uppercase}
   .dayblk{display:none}
   .dayblk.on{display:block}
 
-  /* meals */
-  .meal{padding:13px 0;border-bottom:1px solid var(--card2)}
+  .meal{padding:12px 0;border-bottom:1px solid var(--card2)}
   .meal:last-child{border-bottom:none}
   .meal .mh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
   .meal .mt{font-size:9px;letter-spacing:.13em;color:var(--faint);text-transform:uppercase}
-  .meal .mn{font-size:13.5px;font-weight:650;margin-top:3px;line-height:1.35}
+  .meal .mn{font-size:13px;font-weight:650;margin-top:3px;line-height:1.35}
   .meal .mc{font-size:15px;font-weight:800;color:var(--hot);white-space:nowrap}
-  .mac{display:flex;gap:13px;margin-top:7px;font-size:10.5px;color:var(--faint)}
+  .mac{display:flex;gap:12px;margin-top:6px;font-size:10.5px;color:var(--faint)}
   .mac b{color:var(--ink);font-weight:700}
   .mnote{font-size:11.5px;color:var(--dim);margin-top:7px;padding-top:7px;border-top:1px dashed var(--card2)}
 
-  .lrow{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--card2);font-size:13px}
+  .lrow{display:flex;justify-content:space-between;gap:12px;padding:10px 0;
+    border-bottom:1px solid var(--card2);font-size:13px}
   .lrow:last-child{border-bottom:none}
   .lrow .lv{font-size:11.5px;color:var(--dim);text-align:right;white-space:nowrap}
   .lrow .lv.red{color:#ff8a72}
@@ -130,20 +166,22 @@
   ul.pl{list-style:none}
   ul.pl li{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--card2);font-size:13px;line-height:1.5}
   ul.pl li:last-child{border-bottom:none}
-  ul.pl .pi{font-size:10px;font-weight:800;color:var(--hot);flex:0 0 16px;padding-top:3px}
+  ul.pl .pi{font-size:10px;font-weight:800;color:var(--hot);flex:0 0 15px;padding-top:3px}
   .prose{font-size:13.5px;line-height:1.6;color:var(--dim)}
   .prose b{color:var(--ink)}
   .prose+.prose{margin-top:9px}
   .disc{font-size:10.5px;color:var(--faint);line-height:1.55;padding:6px 2px 12px}
-  .rst{background:none;border:1px solid var(--line);color:var(--faint);font-size:11px;
-    padding:7px 12px;border-radius:8px;cursor:pointer;margin-top:12px;width:100%}
 
-  /* tabs */
+  .btn{background:var(--card2);border:1px solid var(--line);color:var(--dim);font-size:11.5px;
+    padding:9px 12px;border-radius:9px;cursor:pointer;flex:1}
+  .btn:active{border-color:var(--hot)}
+  .btnrow{display:flex;gap:7px;margin-top:12px}
+
   .tabs{position:fixed;left:0;right:0;bottom:0;background:rgba(20,20,25,.97);
     backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;z-index:40;
     padding-bottom:env(safe-area-inset-bottom)}
-  .tab{flex:1;border:none;background:none;padding:11px 4px 12px;font-size:10px;font-weight:700;
-    letter-spacing:.1em;text-transform:uppercase;color:var(--faint);cursor:pointer}
+  .tab{flex:1;border:none;background:none;padding:12px 4px 13px;font-size:10.5px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--faint);cursor:pointer}
   .tab.on{color:var(--hot)}
   .tab .ic{display:block;font-size:16px;margin-bottom:3px;line-height:1}
   .tab:focus-visible{outline:2px solid var(--cool);outline-offset:-3px}
@@ -152,120 +190,157 @@
 </head>
 <body>
 
-<!-- ============ TODAY ============ -->
+<!-- ══════════ A · TODAY ══════════ -->
 <section id="p-today" class="page on">
  <div class="wrap">
-  <div class="eyeb" id="dateline">Loading</div>
+  <div class="eyeb" id="dateline">—</div>
   <h2 class="big">Today</h2>
-  <p class="sub" id="todaysession">—</p>
+  <p class="sub" id="sessline">—</p>
 
-  <div class="banner">
-    <div class="bv" id="streakv">0 days</div>
-    <div class="bl" id="streakl">Tick all four to start the streak</div>
+  <div class="ring">
+    <svg viewBox="0 0 100 100" width="92" height="92" aria-hidden="true">
+      <circle cx="50" cy="50" r="41" fill="none" stroke="#2a2a34" stroke-width="10"/>
+      <circle id="rprog" cx="50" cy="50" r="41" fill="none" stroke="#ff5a3d" stroke-width="10"
+        stroke-linecap="round" stroke-dasharray="257.6" stroke-dashoffset="257.6"
+        transform="rotate(-90 50 50)"/>
+      <text id="rpct" x="50" y="49" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">0</text>
+      <text x="50" y="64" text-anchor="middle" fill="#5a5a68" font-size="9" font-weight="700">OF 4</text>
+    </svg>
+    <div class="rt">
+      <div class="rv" id="streakv">0 days</div>
+      <div class="rl">current streak</div>
+      <div class="rs" id="streakl">Tick all four to start</div>
+    </div>
   </div>
 
   <div class="card">
-    <h3>Daily four · resets at midnight</h3>
-    <div class="tk" data-k="protein" onclick="tog('protein')"><span class="box">✓</span><span class="tl">Protein 152 g</span><span class="th">the floor</span></div>
-    <div class="tk" data-k="session" onclick="tog('session')"><span class="box">✓</span><span class="tl">Session done</span><span class="th" id="sesshint">—</span></div>
-    <div class="tk" data-k="steps" onclick="tog('steps')"><span class="box">✓</span><span class="tl">10k steps</span><span class="th">daily</span></div>
-    <div class="tk" data-k="kitchen" onclick="tog('kitchen')"><span class="box">✓</span><span class="tl">Kitchen shut 21:00</span><span class="th">no late food</span></div>
+    <h3>Meals <span class="r" id="mealr">0 / 5</span></h3>
+    <div id="meallist"></div>
+    <div class="tally">
+      <div class="tal" id="talk"><div class="tv2" id="vkcal">0</div><div class="tl2">of 1795 kcal</div></div>
+      <div class="tal" id="talp"><div class="tv2" id="vprot">0</div><div class="tl2">of 152 g protein</div></div>
+    </div>
   </div>
 
   <div class="card">
-    <h3>This week · <span id="wkcount">0</span> of 28 boxes</h3>
+    <h3>Workout <span class="r" id="wkr">—</span></h3>
+    <div id="exlist"></div>
+  </div>
+
+  <div class="card">
+    <h3>Steps · water · sleep</h3>
+    <div class="num"><div class="nl">Steps<small>target 10k</small></div>
+      <div class="ctl"><button onclick="bump('steps',-500)" aria-label="less">−</button>
+        <span class="nv" id="nsteps">0</span>
+        <button onclick="bump('steps',500)" aria-label="more">+</button></div></div>
+    <div class="num"><div class="nl">Water<small>target 3.5 L</small></div>
+      <div class="ctl"><button onclick="bump('water',-0.25)" aria-label="less">−</button>
+        <span class="nv" id="nwater">0</span>
+        <button onclick="bump('water',0.25)" aria-label="more">+</button></div></div>
+    <div class="num"><div class="nl">Sleep<small>hours last night</small></div>
+      <div class="ctl"><button onclick="bump('sleep',-0.5)" aria-label="less">−</button>
+        <span class="nv" id="nsleep">0</span>
+        <button onclick="bump('sleep',0.5)" aria-label="more">+</button></div></div>
+    <div style="margin-top:14px">
+      <div style="font-size:12.5px;font-weight:600;margin-bottom:2px">Energy &amp; recovery</div>
+      <div style="font-size:10.5px;color:var(--faint)">1 = wrecked · 5 = sharp</div>
+      <div class="rate" id="rate"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Daily four</h3>
+    <div class="tk" data-k="protein" onclick="tog('protein')"><span class="box">✓</span>
+      <span class="tl">Protein 152 g<small>auto-ticks at 5 meals</small></span><span class="tv" id="hprot">0 g</span></div>
+    <div class="tk" data-k="session" onclick="tog('session')"><span class="box">✓</span>
+      <span class="tl">Session done<small id="hsess">—</small></span></div>
+    <div class="tk" data-k="steps" onclick="tog('steps')"><span class="box">✓</span>
+      <span class="tl">10k steps<small>auto-ticks at 10,000</small></span><span class="tv" id="hstep">0</span></div>
+    <div class="tk" data-k="kitchen" onclick="tog('kitchen')"><span class="box">✓</span>
+      <span class="tl">Kitchen shut 21:00<small>no food after</small></span></div>
+  </div>
+
+  <div class="card">
+    <h3>This week <span class="r"><span id="wkcount">0</span> / 28</span></h3>
     <div class="strip" id="strip"></div>
-    <p class="prose" style="font-size:12px;margin-top:12px">24 or more is a win. That's 85% — the target, not perfection. The boxes tell the truth; the scale lies week to week.</p>
-    <button class="rst" onclick="wipe()">Clear all history</button>
-  </div>
-
-  <div class="card">
-    <h3>The floor</h3>
-    <div class="call blue"><b>150 g protein + 8k steps.</b> That's the whole minimum day. No gym, no logging. Hit it and nothing is broken.</div>
-    <div class="call">Never miss twice. One skipped session is noise — two in a row is how a plan dies.</div>
+    <p class="prose" style="font-size:12px;margin-top:12px">24 or more is a win — that's 85%, the target. The boxes tell the truth; the scale lies week to week.</p>
+    <div class="btnrow">
+      <button class="btn" onclick="expo()">Export backup</button>
+      <button class="btn" onclick="document.getElementById('imp').click()">Import</button>
+    </div>
+    <input type="file" id="imp" accept="application/json" style="display:none" onchange="impo(event)">
+    <div class="btnrow"><button class="btn" onclick="wipe()" style="color:#ff8a72">Clear all history</button></div>
   </div>
  </div>
 </section>
 
-<!-- ============ TRAIN ============ -->
-<section id="p-train" class="page">
+<!-- ══════════ B · PLAN ══════════ -->
+<section id="p-plan" class="page">
  <div class="wrap">
-  <div class="eyeb">Sheet 02 · Training</div>
+  <div class="eyeb">The block</div>
   <h2 class="big">Cut the waist.<br><em>Keep the muscle.</em></h2>
-  <p class="sub">Legs Monday only · cardio Wed + Fri · abs Thu + Sun</p>
+  <p class="sub">73.0 kg → 66.1 · 1,795 kcal · 152 g protein</p>
+
+  <div class="card" style="background:linear-gradient(135deg,#ff5a3d,#ff8a3d);color:#fff">
+    <h3 style="color:rgba(255,255,255,.75)">Tomorrow</h3>
+    <div style="font-size:20px;font-weight:800;letter-spacing:-.4px" id="tmrname">—</div>
+    <div style="font-size:12.5px;opacity:.92;margin-top:3px" id="tmrnote">—</div>
+  </div>
 
   <div class="card">
-    <h3>The week · tap a day</h3>
-    <div class="lane">
-      <div class="mk" onclick="day('mon',this)"><span class="pin"></span><span class="mdy">Mon</span><span class="mnm">Legs — heavy<small>5 days clear of bowling</small></span></div>
-      <div class="mk"><span class="pin"></span><span class="mdy">Tue</span><span class="mnm off">Rest</span><span class="mtg n">Closed</span></div>
-      <div class="mk" onclick="day('wed',this)"><span class="pin hot"></span><span class="mdy">Wed</span><span class="mnm">Push<small>Chest · shoulders · triceps</small></span><span class="mtg c">Cardio</span></div>
-      <div class="mk" onclick="day('thu',this)"><span class="pin cool"></span><span class="mdy">Thu</span><span class="mnm">Pull<small>Lat width</small></span><span class="mtg a">Abs</span></div>
-      <div class="mk" onclick="day('fri',this)"><span class="pin hot"></span><span class="mdy">Fri</span><span class="mnm">Delts &amp; arms<small>Light — legs stay fresh</small></span><span class="mtg c">Cardio</span></div>
-      <div class="mk"><span class="pin"></span><span class="mdy">Sat</span><span class="mnm">Cricket<small>Lower body + conditioning</small></span><span class="mtg g">Match</span></div>
-      <div class="mk" onclick="day('sun',this)"><span class="pin cool"></span><span class="mdy">Sun</span><span class="mnm">Back &amp; core<small>No spinal load</small></span><span class="mtg a">Abs</span></div>
-    </div>
+    <h3>The week <span class="r">tap a day</span></h3>
+    <div id="weeklist"></div>
   </div>
 
-  <div id="d-mon" class="dayblk">
-    <div class="card"><h3>Monday · Legs · RPE 7–8</h3>
-      <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">5 min bike · leg swings · hip-flexor opener · bird dog 2×8/side</div></div></div>
-      <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Romanian Deadlift</span><span class="esr">3 × 8</span></div><div class="enote">Your only heavy spinal loader. Neutral spine, hinge at the hips, stop 2 reps short. Never grind. Rest 2–3 min.</div></div></div>
-      <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Hack Squat / Leg Press</span><span class="esr">3 × 10</span></div><div class="enote">Back-supported quads. Rest 2 min.</div></div></div>
-      <div class="ex"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Hip Thrust</span><span class="esr">3 × 10</span></div><div class="enote">Glutes and posterior chain. Rest 90 s.</div></div></div>
-      <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Seated Leg Curl</span><span class="esr">3 × 12</span></div><div class="enote">Hamstrings. Rest 75 s.</div></div></div>
-      <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Standing Calf Raise</span><span class="esr">3 × 15</span></div><div class="enote">Full stretch at the bottom.</div></div></div>
-      <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Dead Bug + Suitcase Carry</span><span class="esr">3 rds</span></div><div class="enote">Dead bug 10/side · carry 30 m/side. Spine insurance.</div></div></div>
-    </div>
-  </div>
+  <div id="d-mon" class="dayblk"><div class="card"><h3>Monday · Legs · RPE 7–8</h3>
+    <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">5 min bike · leg swings · hip-flexor opener · bird dog 2×8/side</div></div></div>
+    <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Romanian Deadlift</span><span class="es">3 × 8</span></div><div class="enote">Your only heavy spinal loader. Neutral spine, hinge at the hips, stop 2 reps short. Never grind. Rest 2–3 min.</div></div></div>
+    <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Hack Squat / Leg Press</span><span class="es">3 × 10</span></div><div class="enote">Back-supported quads. Rest 2 min.</div></div></div>
+    <div class="ex"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Hip Thrust</span><span class="es">3 × 10</span></div><div class="enote">Glutes and posterior chain. Rest 90 s.</div></div></div>
+    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Seated Leg Curl</span><span class="es">3 × 12</span></div><div class="enote">Hamstrings. Rest 75 s.</div></div></div>
+    <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Standing Calf Raise</span><span class="es">3 × 15</span></div><div class="enote">Full stretch at the bottom.</div></div></div>
+    <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Dead Bug + Suitcase Carry</span><span class="es">3 rds</span></div><div class="enote">Dead bug 10/side · carry 30 m/side. Spine insurance.</div></div></div>
+  </div></div>
 
-  <div id="d-wed" class="dayblk">
-    <div class="card"><h3>Wednesday · Push · RPE 8</h3>
-      <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Band pull-aparts 2×20 · dislocates · one light press set</div></div></div>
-      <div class="ex"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Incline DB Press</span><span class="esr">3 × 8–10</span></div><div class="enote">Upper chest. Rest 2 min.</div></div></div>
-      <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Seated Overhead Press</span><span class="esr">3 × 8–10</span></div><div class="enote">Pain-free range only. Rest 2 min.</div></div></div>
-      <div class="ex key"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Lateral Raise</span><span class="esr">4 × 12–15</span><span class="vt">V-taper</span></div><div class="enote">The shoulder-width builder. Slow, no swing. Rest 45–60 s.</div></div></div>
-      <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Cable Chest Fly</span><span class="esr">3 × 12</span></div><div class="enote">Stretch and squeeze. Rest 60 s.</div></div></div>
-      <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Rope Pushdown</span><span class="esr">3 × 12</span></div><div class="enote">Rest 45 s.</div></div></div>
-      <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Zone-2 Cardio</span><span class="esr">25–30 min</span></div><div class="enote">Incline walk or cycle, conversational pace. After lifting.</div></div></div>
-    </div>
-  </div>
+  <div id="d-wed" class="dayblk"><div class="card"><h3>Wednesday · Push · RPE 8</h3>
+    <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Band pull-aparts 2×20 · dislocates · one light press set</div></div></div>
+    <div class="ex"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Incline DB Press</span><span class="es">3 × 8–10</span></div><div class="enote">Upper chest. Rest 2 min.</div></div></div>
+    <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Seated Overhead Press</span><span class="es">3 × 8–10</span></div><div class="enote">Pain-free range only. Rest 2 min.</div></div></div>
+    <div class="ex key"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Lateral Raise</span><span class="es">4 × 12–15</span><span class="vt">V-taper</span></div><div class="enote">The shoulder-width builder. Slow, no swing. Rest 45–60 s.</div></div></div>
+    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Cable Chest Fly</span><span class="es">3 × 12</span></div><div class="enote">Stretch and squeeze. Rest 60 s.</div></div></div>
+    <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Rope Pushdown</span><span class="es">3 × 12</span></div><div class="enote">Rest 45 s.</div></div></div>
+    <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Zone-2 Cardio</span><span class="es">25–30 min</span></div><div class="enote">Incline walk or cycle, conversational pace. After lifting.</div></div></div>
+  </div></div>
 
-  <div id="d-thu" class="dayblk">
-    <div class="card"><h3>Thursday · Pull · low back load</h3>
-      <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Scap pull-ups 2×10 · band pull-aparts · cat-cow ×8</div></div></div>
-      <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Wide-Grip Lat Pulldown</span><span class="esr">4 × 10</span><span class="vt">V-taper</span></div><div class="enote">Elbows down, full stretch at the top. Rest 90 s.</div></div></div>
-      <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Chest-Supported Row</span><span class="esr">3 × 10</span></div><div class="enote">Thickness with zero lower-back load. Rest 90 s.</div></div></div>
-      <div class="ex key"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Straight-Arm Pulldown</span><span class="esr">3 × 12</span><span class="vt">V-taper</span></div><div class="enote">Isolates the lats — pure width. Rest 60 s.</div></div></div>
-      <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Face Pull</span><span class="esr">3 × 15</span></div><div class="enote">Rear delt · bowling insurance. Rest 45 s.</div></div></div>
-      <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Incline DB Curl</span><span class="esr">3 × 12</span></div><div class="enote">Biceps under stretch. Rest 45 s.</div></div></div>
-      <div class="ex key"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Ab Block</span><span class="esr">3 moves</span><span class="vt">Abs</span></div><div class="enote">Hanging knee raise 3×12–15 · cable crunch 3×15 light · Pallof press 3×12/side.</div></div></div>
-    </div>
-  </div>
+  <div id="d-thu" class="dayblk"><div class="card"><h3>Thursday · Pull · low back load</h3>
+    <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Scap pull-ups 2×10 · band pull-aparts · cat-cow ×8</div></div></div>
+    <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Wide-Grip Lat Pulldown</span><span class="es">4 × 10</span><span class="vt">V-taper</span></div><div class="enote">Elbows down, full stretch at the top. Rest 90 s.</div></div></div>
+    <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Chest-Supported Row</span><span class="es">3 × 10</span></div><div class="enote">Thickness with zero lower-back load. Rest 90 s.</div></div></div>
+    <div class="ex key"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Straight-Arm Pulldown</span><span class="es">3 × 12</span><span class="vt">V-taper</span></div><div class="enote">Isolates the lats — pure width. Rest 60 s.</div></div></div>
+    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Face Pull</span><span class="es">3 × 15</span></div><div class="enote">Rear delt · bowling insurance. Rest 45 s.</div></div></div>
+    <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Incline DB Curl</span><span class="es">3 × 12</span></div><div class="enote">Biceps under stretch. Rest 45 s.</div></div></div>
+    <div class="ex key"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Ab Block</span><span class="es">3 moves</span><span class="vt">Abs</span></div><div class="enote">Hanging knee raise 3×12–15 · cable crunch 3×15 light · Pallof press 3×12/side.</div></div></div>
+  </div></div>
 
-  <div id="d-fri" class="dayblk">
-    <div class="card"><h3>Friday · Delts &amp; Arms · RPE 6–7</h3>
-      <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Band work · arm circles. Easy — legs and back stay fresh for tomorrow.</div></div></div>
-      <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Lateral Raise</span><span class="esr">4 × 15</span><span class="vt">V-taper</span></div><div class="enote">Second delt-width session. Drop-set the last set. Rest 45 s.</div></div></div>
-      <div class="ex key"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Cable Lateral Raise</span><span class="esr">3 × 15</span><span class="vt">V-taper</span></div><div class="enote">Constant tension through the range.</div></div></div>
-      <div class="ex"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Rear Delt Fly</span><span class="esr">3 × 15</span></div><div class="enote">Widens the upper back. Rest 45 s.</div></div></div>
-      <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Cable Curl</span><span class="esr">3 × 15</span></div><div class="enote">Rest 40 s.</div></div></div>
-      <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Overhead Triceps Ext.</span><span class="esr">3 × 12</span></div><div class="enote">Long-head stretch. Rest 40 s.</div></div></div>
-      <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Zone-2 Cardio</span><span class="esr">25–30 min</span></div><div class="enote">Low impact only. No running the day before a match.</div></div></div>
-    </div>
-  </div>
+  <div id="d-fri" class="dayblk"><div class="card"><h3>Friday · Delts &amp; Arms · RPE 6–7</h3>
+    <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Band work · arm circles. Easy — legs and back stay fresh for tomorrow.</div></div></div>
+    <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Lateral Raise</span><span class="es">4 × 15</span><span class="vt">V-taper</span></div><div class="enote">Second delt-width session. Drop-set the last set. Rest 45 s.</div></div></div>
+    <div class="ex key"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Cable Lateral Raise</span><span class="es">3 × 15</span><span class="vt">V-taper</span></div><div class="enote">Constant tension through the range.</div></div></div>
+    <div class="ex"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Rear Delt Fly</span><span class="es">3 × 15</span></div><div class="enote">Widens the upper back. Rest 45 s.</div></div></div>
+    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Cable Curl</span><span class="es">3 × 15</span></div><div class="enote">Rest 40 s.</div></div></div>
+    <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Overhead Triceps Ext.</span><span class="es">3 × 12</span></div><div class="enote">Long-head stretch. Rest 40 s.</div></div></div>
+    <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Zone-2 Cardio</span><span class="es">25–30 min</span></div><div class="enote">Low impact only. No running the day before a match.</div></div></div>
+  </div></div>
 
-  <div id="d-sun" class="dayblk">
-    <div class="card"><h3>Sunday · Back &amp; Core · no spinal load</h3>
-      <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">5 min bike · thoracic rotations · cat-cow. Day after bowling. Vitamin D3 today.</div></div></div>
-      <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Neutral-Grip Pulldown</span><span class="esr">3 × 12</span><span class="vt">V-taper</span></div><div class="enote">Second lat-width session. Rest 75 s.</div></div></div>
-      <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Chest-Supported Row</span><span class="esr">3 × 12</span></div><div class="enote">Lighter than Thursday. Rest 75 s.</div></div></div>
-      <div class="ex key"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Straight-Arm Pulldown</span><span class="esr">3 × 15</span><span class="vt">V-taper</span></div><div class="enote">Rest 45 s.</div></div></div>
-      <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Face Pull</span><span class="esr">3 × 20</span></div><div class="enote">Shoulder recovery after a bowling spell.</div></div></div>
-      <div class="ex key"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Ab Block</span><span class="esr">3 moves</span><span class="vt">Abs</span></div><div class="enote">Hanging knee raise · cable crunch light · Pallof press.</div></div></div>
-      <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">McGill Big-3 + Mobility</span><span class="esr">1 round</span></div><div class="enote">Curl-up · side plank 30 s/side · bird dog. Then hips and t-spine.</div></div></div>
-    </div>
-  </div>
+  <div id="d-sun" class="dayblk"><div class="card"><h3>Sunday · Back &amp; Core · no spinal load</h3>
+    <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">5 min bike · thoracic rotations · cat-cow. Day after bowling. Vitamin D3 today.</div></div></div>
+    <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Neutral-Grip Pulldown</span><span class="es">3 × 12</span><span class="vt">V-taper</span></div><div class="enote">Second lat-width session. Rest 75 s.</div></div></div>
+    <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Chest-Supported Row</span><span class="es">3 × 12</span></div><div class="enote">Lighter than Thursday. Rest 75 s.</div></div></div>
+    <div class="ex key"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Straight-Arm Pulldown</span><span class="es">3 × 15</span><span class="vt">V-taper</span></div><div class="enote">Rest 45 s.</div></div></div>
+    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Face Pull</span><span class="es">3 × 20</span></div><div class="enote">Shoulder recovery after a bowling spell.</div></div></div>
+    <div class="ex key"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Ab Block</span><span class="es">3 moves</span><span class="vt">Abs</span></div><div class="enote">Hanging knee raise · cable crunch light · Pallof press.</div></div></div>
+    <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">McGill Big-3 + Mobility</span><span class="es">1 round</span></div><div class="enote">Curl-up · side plank 30 s/side · bird dog. Then hips and t-spine.</div></div></div>
+  </div></div>
 
   <div class="card">
     <h3>Cardio &amp; steps · the engine</h3>
@@ -273,61 +348,11 @@
     <div class="lrow"><span>Zone-2</span><span class="lv">Wed + Fri · 25–30 min</span></div>
     <div class="lrow"><span>Daily steps</span><span class="lv">10–12k</span></div>
     <div class="lrow"><span>Saturday</span><span class="lv">Cricket only · no extra</span></div>
+    <div class="call">No weighted side bends or loaded twists — they thicken the waist.</div>
   </div>
 
   <div class="card">
-    <h3>Ab block · Thu + Sun</h3>
-    <div class="ex"><span class="ix">A</span><div class="eb"><div class="et"><span class="en">Hanging Knee Raise</span><span class="esr">3 × 12–15</span></div><div class="enote">Bodyweight. Controlled, no swinging.</div></div></div>
-    <div class="ex"><span class="ix">B</span><div class="eb"><div class="et"><span class="en">Cable Crunch</span><span class="esr">3 × 15</span></div><div class="enote">Light load, high reps.</div></div></div>
-    <div class="ex"><span class="ix">C</span><div class="eb"><div class="et"><span class="en">Pallof Press</span><span class="esr">3 × 12/side</span></div><div class="enote">Anti-rotation. Keeps the midsection narrow.</div></div></div>
-    <div class="call"><b>No weighted side bends or loaded twists.</b> They thicken the waist — the opposite of the goal.</div>
-  </div>
-
-  <div class="card">
-    <h3>Progression</h3>
-    <ul class="pl">
-      <li><span class="pi">1</span><div><b>Double progression.</b> Top of the rep range on every set, then add 2.5 kg upper / 5 kg lower.</div></li>
-      <li><span class="pi">2</span><div><b>RDL never goes to failure.</b> Form breaks, set ends.</div></li>
-      <li><span class="pi">3</span><div><b>Deload week 7.</b> Same lifts, ~40% less load and volume.</div></li>
-    </ul>
-  </div>
- </div>
-</section>
-
-<!-- ============ DIET ============ -->
-<section id="p-diet" class="page">
- <div class="wrap">
-  <div class="eyeb">Sheet 03 · Nutrition</div>
-  <h2 class="big">The same five.<br><em>Every day.</em></h2>
-  <p class="sub">Fixed plan. No decisions, no drift.</p>
-
-  <div class="stats">
-    <div class="st"><div class="sv">1,795</div><div class="sl">kcal</div></div>
-    <div class="st"><div class="sv">152g</div><div class="sl">protein</div></div>
-    <div class="st"><div class="sv">38g</div><div class="sl">fat</div></div>
-    <div class="st"><div class="sv">34g</div><div class="sl">fibre</div></div>
-  </div>
-
-  <div class="card">
-    <h3>Gut fix · active</h3>
-    <div class="lrow"><span>Oats + chia restored</span><span class="lv grn">soluble fibre</span></div>
-    <div class="lrow"><span>Cabbage removed</span><span class="lv">bottle gourd instead</span></div>
-    <div class="lrow"><span>Protein 168 → 152 g</span><span class="lv">2.05 g/kg</span></div>
-    <div class="lrow"><span>Water</span><span class="lv red">3–3.5 L · non-negotiable</span></div>
-    <div class="lrow"><span>Whey</span><span class="lv">one go, post-workout</span></div>
-    <div class="call blue">Symptoms started when oats and chia left. Total fibre looked fine but the <b>type</b> changed — soluble out, insoluble in. <b>Protein was not the cause.</b> If things improve, credit the fibre.</div>
-  </div>
-
-  <div class="card">
-    <h3>Constraints · non-negotiable</h3>
-    <div class="lrow"><span>Fat per meal</span><span class="lv red">Max 12 g</span></div>
-    <div class="lrow"><span>Last meal</span><span class="lv">By 21:00</span></div>
-    <div class="lrow"><span>Reflux triggers</span><span class="lv">No chocolate · coffee · citrus · chilli</span></div>
-    <div class="lrow"><span>Fish</span><span class="lv">None · capsule counts as fat</span></div>
-  </div>
-
-  <div class="card">
-    <h3>Daily plan</h3>
+    <h3>The five meals</h3>
     <div class="meal"><div class="mh"><div><div class="mt">01 · Breakfast · post-gym</div><div class="mn">40 g oats · 100 g low-fat curd · 25 g whey · 10 g chia</div></div><div class="mc">385</div></div>
       <div class="mac"><span>P <b>41</b></span><span>C <b>41</b></span><span>F <b>8.5</b></span><span>Fib <b>9</b></span></div>
       <div class="mnote">Chia only — no pumpkin or flax on top or the meal breaks the fat ceiling.</div></div>
@@ -343,6 +368,16 @@
     <div class="meal"><div class="mh"><div><div class="mt">05 · Dinner · 20:45 — the big one</div><div class="mn">125 g chicken · 40 g rice · 250 g veg · 5 g olive oil</div></div><div class="mc">479</div></div>
       <div class="mac"><span>P <b>43</b></span><span>C <b>54</b></span><span>F <b>10.4</b></span><span>Fib <b>8</b></span></div>
       <div class="mnote">Largest meal, as late as the reflux rule allows. Go to bed full, not hungry at 23:00.</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Constraints · non-negotiable</h3>
+    <div class="lrow"><span>Fat per meal</span><span class="lv red">Max 12 g</span></div>
+    <div class="lrow"><span>Last meal</span><span class="lv">By 21:00</span></div>
+    <div class="lrow"><span>Reflux triggers</span><span class="lv">No chocolate · coffee · citrus · chilli</span></div>
+    <div class="lrow"><span>Fish</span><span class="lv">None · capsule counts as fat</span></div>
+    <div class="lrow"><span>Water</span><span class="lv red">3–3.5 L · non-negotiable</span></div>
+    <div class="lrow"><span>Whey</span><span class="lv">one go, post-workout · never sipped</span></div>
   </div>
 
   <div class="card">
@@ -389,7 +424,7 @@
     <div class="lrow"><span>Cook the week's chicken</span><span class="lv">1.75 kg → 14 portions</span></div>
     <div class="lrow"><span>Shop the standing list</span><span class="lv">same every week</span></div>
     <div class="lrow"><span>Vitamin D3</span><span class="lv">60,000 IU</span></div>
-    <div class="call">The plan only survives if the food is <b>already cooked.</b> A 1,795 kcal day that needs cooking at 21:00 loses to whatever's in the fridge.</div>
+    <div class="call">The plan only survives if the food is <b>already cooked.</b></div>
   </div>
 
   <div class="card">
@@ -404,23 +439,8 @@
     <div class="lrow"><span>Whey</span><span class="lv">175 g</span></div>
     <div class="lrow"><span>Apples</span><span class="lv">1.4 kg</span></div>
     <div class="lrow"><span>Beans · gourd · carrot · spinach</span><span class="lv">1.0 / 1.0 / 0.8 / 0.3 kg</span></div>
+    <div class="lrow"><span>Creatine · fish oil · D3</span><span class="lv">daily / daily / Sun</span></div>
   </div>
-
-  <div class="card">
-    <h3>Supplements</h3>
-    <div class="lrow"><span>Creatine</span><span class="lv">3–5 g daily</span></div>
-    <div class="lrow"><span>Fish oil</span><span class="lv">1 cap · counts as fat</span></div>
-    <div class="lrow"><span>Vitamin D3</span><span class="lv">60,000 IU · Sundays</span></div>
-  </div>
- </div>
-</section>
-
-<!-- ============ PROGRESS ============ -->
-<section id="p-prog" class="page">
- <div class="wrap">
-  <div class="eyeb">Sheet 04 · Measurement</div>
-  <h2 class="big">Read the trend.<br><em>Not the day.</em></h2>
-  <p class="sub">In a recomposition the scale under-reports. The waist doesn't.</p>
 
   <div class="card">
     <h3>Baseline · 19 Jul scan</h3>
@@ -434,19 +454,12 @@
   </div>
 
   <div class="card">
-    <h3>What to record</h3>
-    <div class="lrow"><span>Waist at navel, morning</span><span class="lv">weekly · Sunday</span></div>
-    <div class="lrow"><span>Body weight</span><span class="lv">daily · read 7-day avg</span></div>
-    <div class="lrow"><span>Photos front/side/back</span><span class="lv">every 2 weeks</span></div>
-    <div class="lrow"><span>Key lift loads</span><span class="lv">every session</span></div>
-  </div>
-
-  <div class="card">
     <h3>Fortnightly checkpoint</h3>
     <div class="lrow"><span>Losing 0.5–0.7 kg/wk</span><span class="lv grn">hold</span></div>
     <div class="lrow"><span>Losing &lt;0.3 kg/wk, adherence tight</span><span class="lv red">+1 cardio</span></div>
     <div class="lrow"><span>Losing &gt;0.8 kg/wk or lifts dipping</span><span class="lv">+150 kcal</span></div>
     <div class="lrow"><span>Waist down, weight flat</span><span class="lv grn">change nothing</span></div>
+    <div class="call blue">Measure the waist at the navel, Sunday morning. Weigh daily but only read the <b>7-day average.</b></div>
   </div>
 
   <div class="card">
@@ -456,13 +469,14 @@
       <li><span class="pi">2</span><div><b>Target 85%, not 100%.</b> Six good days weekly beats seven perfect then a collapse.</div></li>
       <li><span class="pi">3</span><div><b>A bad meal ends at that meal.</b> No compensating, no starting Monday.</div></li>
       <li><span class="pi">4</span><div><b>Decide once, in advance.</b> Any decision left to the moment is made tired.</div></li>
+      <li><span class="pi">5</span><div><b>The floor:</b> 150 g protein + 8k steps. Hit it and nothing is broken.</div></li>
     </ul>
   </div>
 
   <div class="card">
     <h3>Projected outcome · 8 weeks</h3>
     <p class="prose">At 0.5–0.7 kg per week you'll shift <b>4–5 kg of fat</b>, landing near <b>16–18% body fat</b>. Expect a visibly tighter waist and <b>upper abs showing</b> in good light and when flexed.</p>
-    <p class="prose">A permanently visible six-pack sits at <b>11–13%</b> — a 14–16 week job from 22.4%. This block gets most of the way with the muscle intact. Rushing deflates the frame, and abs on a deflated frame read worse than none.</p>
+    <p class="prose">A permanently visible six-pack sits at <b>11–13%</b> — a 14–16 week job from 22.4%. This block gets most of the way with the muscle intact.</p>
   </div>
 
   <p class="disc">Coaching guidance built around your stated constraints — post-cholecystectomy fat limit, reflux, low bone mass, no current back pain. Not medical advice. New or worsening back pain, reflux that won't settle, persistent bowel changes, or any concerning symptom: stop and see your doctor or physio.</p>
@@ -471,93 +485,271 @@
 
 <nav class="tabs">
   <button class="tab on" id="t-today" onclick="go('today',this)"><span class="ic">◉</span>Today</button>
-  <button class="tab" id="t-train" onclick="go('train',this)"><span class="ic">▲</span>Train</button>
-  <button class="tab" id="t-diet" onclick="go('diet',this)"><span class="ic">◍</span>Diet</button>
-  <button class="tab" id="t-prog" onclick="go('prog',this)"><span class="ic">◈</span>Progress</button>
+  <button class="tab" id="t-plan" onclick="go('plan',this)"><span class="ic">◈</span>Plan</button>
 </nav>
 
 <script>
 (function(){
-  var KEY='vtaper.log.v1';
+  var KEY='vtaper.v2';
   var ITEMS=['protein','session','steps','kitchen'];
-  var SESS={0:'Back & core + abs',1:'Legs — heavy',2:'Rest — gym closed',3:'Push + cardio',
-            4:'Pull + abs',5:'Delts & arms + cardio',6:'Cricket'};
-  var HINT={0:'Back & core',1:'Legs',2:'rest day',3:'Push',4:'Pull',5:'Delts & arms',6:'Cricket'};
 
-  function key(d){ // local date, not UTC
-    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
-  function load(){
-    try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; }
-  }
-  function save(o){
-    try{ localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){}
-  }
-  var log=load();
-  var today=key(new Date());
+  var MEALS=[
+    {id:1,t:'Breakfast · post-gym',n:'Oats · curd · whey · chia',k:385,p:41},
+    {id:2,t:'Lunch',n:'Chicken · rice · veg · curd',k:537,p:49},
+    {id:3,t:'Snack · 15:30',n:'Apple 200 g',k:104,p:0.5},
+    {id:4,t:'Evening · 18:00',n:'Sandwich',k:290,p:20},
+    {id:5,t:'Dinner · 20:45',n:'Chicken · rice · veg',k:479,p:43}
+  ];
 
-  function todayRec(){
-    if(!log[today]) log[today]={};   // new day = fresh boxes, history untouched
-    return log[today];
-  }
-  function count(rec){
-    var n=0; for(var i=0;i<ITEMS.length;i++){ if(rec&&rec[ITEMS[i]]) n++; } return n;
-  }
-
-  window.tog=function(k){
-    var r=todayRec();
-    r[k]=!r[k];
-    save(log);
-    paint();
+  var W={
+    1:{name:'Legs — heavy',note:'Only heavy spinal day · 5 days clear of bowling',log:true,ex:[
+      {k:'rdl',n:'Romanian Deadlift',s:'3 × 8'},
+      {k:'hack',n:'Hack Squat / Leg Press',s:'3 × 10'},
+      {k:'hip',n:'Hip Thrust',s:'3 × 10'},
+      {k:'curl',n:'Seated Leg Curl',s:'3 × 12'},
+      {k:'calf',n:'Standing Calf Raise',s:'3 × 15'},
+      {k:'core',n:'Dead Bug + Carry',s:'3 rds'}]},
+    2:{name:'Rest — gym closed',note:'Drop the snack · ~1,660 kcal',log:false,ex:[]},
+    3:{name:'Push + cardio',note:'Chest · shoulders · triceps',log:true,ex:[
+      {k:'incdb',n:'Incline DB Press',s:'3 × 8–10'},
+      {k:'ohp',n:'Seated Overhead Press',s:'3 × 8–10'},
+      {k:'lat1',n:'Lateral Raise',s:'4 × 12–15'},
+      {k:'fly',n:'Cable Chest Fly',s:'3 × 12'},
+      {k:'push',n:'Rope Pushdown',s:'3 × 12'},
+      {k:'z2a',n:'Zone-2 Cardio',s:'25–30 min'}]},
+    4:{name:'Pull + abs',note:'Lat width · low back load',log:true,ex:[
+      {k:'pd',n:'Wide-Grip Lat Pulldown',s:'4 × 10'},
+      {k:'row',n:'Chest-Supported Row',s:'3 × 10'},
+      {k:'sapd',n:'Straight-Arm Pulldown',s:'3 × 12'},
+      {k:'face',n:'Face Pull',s:'3 × 15'},
+      {k:'bic',n:'Incline DB Curl',s:'3 × 12'},
+      {k:'abs1',n:'Ab Block',s:'3 moves'}]},
+    5:{name:'Delts & arms + cardio',note:'Light — legs stay fresh for tomorrow',log:true,ex:[
+      {k:'lat2',n:'Lateral Raise',s:'4 × 15'},
+      {k:'clat',n:'Cable Lateral Raise',s:'3 × 15'},
+      {k:'rear',n:'Rear Delt Fly',s:'3 × 15'},
+      {k:'ccurl',n:'Cable Curl',s:'3 × 15'},
+      {k:'ohtri',n:'Overhead Triceps Ext.',s:'3 × 12'},
+      {k:'z2b',n:'Zone-2 Cardio',s:'25–30 min'}]},
+    6:{name:'Cricket',note:'Counts as lower body + conditioning · whey only after',log:false,ex:[]},
+    0:{name:'Back & core + abs',note:'No spinal load · Vitamin D3 today',log:true,ex:[
+      {k:'ngpd',n:'Neutral-Grip Pulldown',s:'3 × 12'},
+      {k:'row2',n:'Chest-Supported Row',s:'3 × 12'},
+      {k:'sapd2',n:'Straight-Arm Pulldown',s:'3 × 15'},
+      {k:'face2',n:'Face Pull',s:'3 × 20'},
+      {k:'abs2',n:'Ab Block',s:'3 moves'},
+      {k:'mcg',n:'McGill Big-3 + Mobility',s:'1 round'}]}
   };
-  window.wipe=function(){
-    if(confirm('Clear all tracked history? This cannot be undone.')){
-      log={}; save(log); paint();
-    }
+  var WEEK=[
+    {d:1,l:'Mon',n:'Legs — heavy',s:'5 days clear of bowling',id:'mon',pin:''},
+    {d:2,l:'Tue',n:'Rest',s:'',id:'',pin:'',tag:'n',tagl:'Closed'},
+    {d:3,l:'Wed',n:'Push',s:'Chest · shoulders · triceps',id:'wed',pin:'hot',tag:'c',tagl:'Cardio'},
+    {d:4,l:'Thu',n:'Pull',s:'Lat width',id:'thu',pin:'cool',tag:'a',tagl:'Abs'},
+    {d:5,l:'Fri',n:'Delts & arms',s:'Light — legs stay fresh',id:'fri',pin:'hot',tag:'c',tagl:'Cardio'},
+    {d:6,l:'Sat',n:'Cricket',s:'Lower body + conditioning',id:'',pin:'',tag:'g',tagl:'Match'},
+    {d:0,l:'Sun',n:'Back & core',s:'No spinal load',id:'sun',pin:'cool',tag:'a',tagl:'Abs'}
+  ];
+
+  function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(log));}catch(e){alert('Storage full or blocked — export a backup.');}}
+  var log=load(), today=key(new Date());
+
+  function rec(){
+    if(!log[today]) log[today]={meals:{},ex:{},steps:0,water:0,sleep:0,energy:0,box:{}};
+    var r=log[today];
+    r.meals=r.meals||{}; r.ex=r.ex||{}; r.box=r.box||{};
+    return r;
+  }
+  function count(r){var n=0;if(!r||!r.box)return 0;for(var i=0;i<ITEMS.length;i++)if(r.box[ITEMS[i]])n++;return n;}
+
+  window.tog=function(k){var r=rec();r.box[k]=!r.box[k];save();paint();};
+  window.bump=function(f,by){
+    var r=rec(); r[f]=Math.max(0,Math.round(((r[f]||0)+by)*100)/100);
+    if(f==='steps'&&r[f]>=10000) r.box.steps=true;
+    save(); paint();
   };
+  window.setRate=function(v){var r=rec();r.energy=(r.energy===v?0:v);save();paint();};
+  window.tmeal=function(id){
+    var r=rec(); r.meals[id]=!r.meals[id];
+    var n=0; for(var i=0;i<MEALS.length;i++) if(r.meals[MEALS[i].id]) n++;
+    if(n>=5) r.box.protein=true;
+    save(); paint();
+  };
+  window.tex=function(k){
+    var r=rec(); r.ex[k]=r.ex[k]||{}; r.ex[k].done=!r.ex[k].done;
+    var day=W[new Date().getDay()], all=day.ex.length>0;
+    for(var i=0;i<day.ex.length;i++) if(!(r.ex[day.ex[i].k]||{}).done) all=false;
+    if(all) r.box.session=true;
+    save(); paint();
+  };
+  window.setv=function(k,f,v){
+    var r=rec(); r.ex[k]=r.ex[k]||{}; r.ex[k][f]=v; save();
+    var el=document.getElementById('pr-'+k); if(el) el.textContent=prText(k,r.ex[k]);
+  };
+  function best(k){
+    var b=0;
+    for(var d in log){ if(d===today) continue;
+      var e=(log[d].ex||{})[k]; if(e&&e.w){ var w=parseFloat(e.w)||0; if(w>b) b=w; } }
+    return b;
+  }
+  function prText(k,e){
+    var b=best(k), w=parseFloat((e||{}).w)||0;
+    if(!w) return b? ('best '+b+' kg') : '';
+    if(w>b&&b>0) return '★ new best — beat '+b+' kg';
+    if(w>0&&b===0) return '★ first logged';
+    return 'best '+b+' kg';
+  }
+  window.expo=function(){
+    var blob=new Blob([JSON.stringify(log,null,2)],{type:'application/json'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='vtaper-backup-'+today+'.json';
+    a.click(); URL.revokeObjectURL(a.href);
+  };
+  window.impo=function(ev){
+    var f=ev.target.files[0]; if(!f) return;
+    var fr=new FileReader();
+    fr.onload=function(){
+      try{ var d=JSON.parse(fr.result);
+        if(confirm('Replace all current data with this backup?')){ log=d; save(); paint(); } }
+      catch(e){ alert('That file could not be read.'); }
+    };
+    fr.readAsText(f); ev.target.value='';
+  };
+  window.wipe=function(){ if(confirm('Clear all tracked history? This cannot be undone.')){log={};save();paint();} };
 
   function streak(){
-    var n=0, d=new Date();
-    // today only counts if complete; otherwise start from yesterday
-    if(count(log[key(d)])<4){ d.setDate(d.getDate()-1); }
-    while(count(log[key(d)])===4){ n++; d.setDate(d.getDate()-1); }
+    var n=0,d=new Date();
+    if(count(log[key(d)])<4) d.setDate(d.getDate()-1);
+    while(count(log[key(d)])===4){n++;d.setDate(d.getDate()-1);}
     return n;
   }
 
   function paint(){
-    var now=new Date(), rec=todayRec();
-    var dl=document.getElementById('dateline');
-    if(dl) dl.textContent=now.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
-    var ts=document.getElementById('todaysession');
-    if(ts) ts.textContent=SESS[now.getDay()];
-    var sh=document.getElementById('sesshint');
-    if(sh) sh.textContent=HINT[now.getDay()];
+    var now=new Date(), dow=now.getDay(), r=rec(), day=W[dow];
 
-    document.querySelectorAll('.tk').forEach(function(el){
-      el.classList.toggle('done', !!rec[el.getAttribute('data-k')]);
+    document.getElementById('dateline').textContent=
+      now.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
+    document.getElementById('sessline').textContent=day.name+' · '+day.note;
+    document.getElementById('hsess').textContent=day.name;
+
+    // meals
+    var ml=document.getElementById('meallist'), kc=0, pr=0, mn=0;
+    ml.innerHTML='';
+    MEALS.forEach(function(m){
+      var on=!!r.meals[m.id]; if(on){kc+=m.k;pr+=m.p;mn++;}
+      var d=document.createElement('div');
+      d.className='tk'+(on?' done':'');
+      d.onclick=function(){tmeal(m.id)};
+      d.innerHTML='<span class="box">✓</span><span class="tl">'+m.t+
+        '<small>'+m.n+'</small></span><span class="tv">'+m.k+' · P'+m.p+'</span>';
+      ml.appendChild(d);
+    });
+    document.getElementById('mealr').textContent=mn+' / 5';
+    document.getElementById('vkcal').textContent=kc;
+    document.getElementById('vprot').textContent=Math.round(pr);
+    document.getElementById('talk').classList.toggle('hit',kc>=1700);
+    document.getElementById('talp').classList.toggle('hit',pr>=150);
+    document.getElementById('hprot').textContent=Math.round(pr)+' g';
+
+    // workout
+    var el=document.getElementById('exlist'); el.innerHTML='';
+    if(!day.log){
+      el.innerHTML='<p class="prose" style="font-size:12.5px">'+day.note+
+        '. Tick <b>Session done</b> below once the day is served.</p>';
+      document.getElementById('wkr').textContent=day.name;
+    }else{
+      var dn=0;
+      day.ex.forEach(function(x){
+        var e=r.ex[x.k]||{}; if(e.done) dn++;
+        var w=document.createElement('div');
+        w.className='exr'+(e.done?' done':'');
+        w.innerHTML=
+          '<div class="eh"><span class="ebx">✓</span><span class="enm">'+x.n+
+          '</span><span class="esr">'+x.s+'</span></div>'+
+          '<div class="inp"><input type="number" inputmode="decimal" placeholder="kg" value="'+
+            (e.w!==undefined?e.w:'')+'" oninput="setv(\''+x.k+'\',\'w\',this.value)">'+
+          '<input type="text" inputmode="numeric" placeholder="reps" value="'+
+            (e.r!==undefined?e.r:'')+'" oninput="setv(\''+x.k+'\',\'r\',this.value)"></div>'+
+          '<div class="pr" id="pr-'+x.k+'">'+prText(x.k,e)+'</div>';
+        w.querySelector('.eh').onclick=function(){tex(x.k)};
+        el.appendChild(w);
+      });
+      document.getElementById('wkr').textContent=dn+' / '+day.ex.length;
+    }
+
+    // numbers
+    document.getElementById('nsteps').textContent=(r.steps||0).toLocaleString();
+    document.getElementById('nsteps').className='nv'+((r.steps||0)>=10000?' hit':'');
+    document.getElementById('nwater').textContent=(r.water||0).toFixed(2).replace(/\.?0+$/,'')+' L';
+    document.getElementById('nwater').className='nv'+((r.water||0)>=3?' hit':'');
+    document.getElementById('nsleep').textContent=(r.sleep||0)+' h';
+    document.getElementById('nsleep').className='nv'+((r.sleep||0)>=7?' hit':'');
+    document.getElementById('hstep').textContent=(r.steps||0).toLocaleString();
+
+    var rt=document.getElementById('rate'); rt.innerHTML='';
+    for(var i=1;i<=5;i++){(function(v){
+      var b=document.createElement('button');
+      b.textContent=v; b.className=(r.energy===v?'on':'');
+      b.onclick=function(){setRate(v)}; rt.appendChild(b);
+    })(i);}
+
+    // daily four
+    document.querySelectorAll('#p-today .tk[data-k]').forEach(function(e){
+      e.classList.toggle('done',!!r.box[e.getAttribute('data-k')]);
     });
 
+    // ring + streak
+    var c=count(r), pct=c/4;
+    document.getElementById('rprog').setAttribute('stroke-dashoffset',(257.6*(1-pct)).toFixed(1));
+    document.getElementById('rpct').textContent=c;
     var s=streak();
-    document.getElementById('streakv').textContent = s===1 ? '1 day' : s+' days';
+    document.getElementById('streakv').textContent=(s===1?'1 day':s+' days');
     document.getElementById('streakl').textContent = s===0
-      ? 'Tick all four to start the streak'
-      : (count(rec)===4 ? 'All four done today. Keep it unbroken.' : 'Finish today to extend it.');
+      ? 'Tick all four to start'
+      : (c===4?'All four done. Keep it unbroken.':'Finish today to extend it.');
 
-    // week strip: Monday-start week containing today
+    // week strip
     var strip=document.getElementById('strip'); strip.innerHTML='';
-    var mon=new Date(); var dow=(mon.getDay()+6)%7; mon.setDate(mon.getDate()-dow);
-    var L=['M','T','W','T','F','S','S'], total=0;
+    var mon=new Date(); mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
+    var L=['M','T','W','T','F','S','S'], tot=0;
     for(var i=0;i<7;i++){
-      var d=new Date(mon); d.setDate(mon.getDate()+i);
-      var k=key(d), c=count(log[k]); total+=c;
+      var d2=new Date(mon); d2.setDate(mon.getDate()+i);
+      var k2=key(d2), cc=count(log[k2]); tot+=cc;
       var cell=document.createElement('div');
-      cell.className='cell'+(c===4?' full':c>0?' part':'')+(k===today?' today':'');
-      cell.innerHTML='<span class="cd">'+L[i]+'</span><span class="ck">'+(c?c:'·')+'</span>';
+      cell.className='cell'+(cc===4?' full':cc>0?' part':'')+(k2===today?' today':'');
+      cell.innerHTML='<span class="cd">'+L[i]+'</span><span class="ck">'+(cc||'·')+'</span>';
       strip.appendChild(cell);
     }
-    document.getElementById('wkcount').textContent=total;
+    document.getElementById('wkcount').textContent=tot;
+
+    // plan: tomorrow + week list
+    var tm=W[(dow+1)%7];
+    document.getElementById('tmrname').textContent=tm.name;
+    document.getElementById('tmrnote').textContent=tm.note;
+    var wl=document.getElementById('weeklist'); wl.innerHTML='';
+    WEEK.forEach(function(x){
+      var isToday=(x.d===dow);
+      var m=document.createElement('div');
+      m.className='mk';
+      m.innerHTML='<span class="pin '+(isToday?'now':x.pin)+'"></span><span class="mdy">'+x.l+
+        '</span><span class="mnm'+(x.n==='Rest'?' off':'')+'">'+x.n+
+        (x.s?'<small>'+x.s+'</small>':'')+'</span>'+
+        (x.tag?'<span class="mtg '+x.tag+'">'+x.tagl+'</span>':'');
+      if(x.id) m.onclick=function(){day2(x.id,m)};
+      wl.appendChild(m);
+    });
   }
 
+  window.day2=function(id,el){
+    var b=document.getElementsByClassName('dayblk'), was=el&&el.classList.contains('sel');
+    for(var i=0;i<b.length;i++) b[i].classList.remove('on');
+    document.querySelectorAll('.mk').forEach(function(m){m.style.background=''});
+    if(!was){ document.getElementById('d-'+id).classList.add('on');
+      if(el){el.classList.add('sel');el.style.background='var(--card2)';
+        setTimeout(function(){document.getElementById('d-'+id).scrollIntoView({behavior:'smooth',block:'start'})},60);} }
+  };
   window.go=function(id,btn){
     var p=document.getElementsByClassName('page');
     for(var i=0;i<p.length;i++) p[i].classList.remove('on');
@@ -567,33 +759,14 @@
     (btn||document.getElementById('t-'+id)).classList.add('on');
     window.scrollTo(0,0);
   };
-  window.day=function(id,el){
-    var b=document.getElementsByClassName('dayblk');
-    for(var i=0;i<b.length;i++) b[i].classList.remove('on');
-    var t=document.getElementById('d-'+id);
-    var wasOn=el&&el.classList.contains('sel');
-    document.querySelectorAll('.mk').forEach(function(m){m.classList.remove('sel')});
-    if(!wasOn){ t.classList.add('on'); if(el) el.classList.add('sel'); }
-  };
 
-  // roll over to a fresh day if the app is left open past midnight
-  setInterval(function(){
-    var k=key(new Date());
-    if(k!==today){ today=k; paint(); }
-  },60000);
-
+  setInterval(function(){var k=key(new Date());if(k!==today){today=k;paint();}},60000);
   document.addEventListener('visibilitychange',function(){
-    if(!document.hidden){
-      var k=key(new Date());
-      if(k!==today) today=k;
-      log=load(); paint();
-    }
+    if(!document.hidden){var k=key(new Date());if(k!==today)today=k;log=load();paint();}
   });
 
   paint();
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('sw.js').catch(function(){});
-  }
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
 })();
 </script>
 </body>
