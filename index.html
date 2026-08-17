@@ -217,9 +217,10 @@
     <h3>Meals <span class="r" id="mealr">0 / 5</span></h3>
     <div id="meallist"></div>
     <div class="tally">
-      <div class="tal" id="talk"><div class="tv2" id="vkcal">0</div><div class="tl2">of 1795 kcal</div></div>
-      <div class="tal" id="talp"><div class="tv2" id="vprot">0</div><div class="tl2">of 152 g protein</div></div>
+      <div class="tal" id="talk"><div class="tv2" id="vkcal">0</div><div class="tl2">of 1810 kcal</div></div>
+      <div class="tal" id="talp"><div class="tv2" id="vprot">0</div><div class="tl2">of 155 g protein</div></div>
     </div>
+    <p class="prose" style="font-size:11.5px;margin-top:10px">Chicken weighed <b>raw</b> · rice <b>dry</b> · oil in grams.</p>
   </div>
 
   <div class="card">
@@ -233,7 +234,7 @@
       <div class="ctl"><button onclick="bump('steps',-500)" aria-label="less">−</button>
         <span class="nv" id="nsteps">0</span>
         <button onclick="bump('steps',500)" aria-label="more">+</button></div></div>
-    <div class="num"><div class="nl">Water<small>target 3.5 L</small></div>
+    <div class="num"><div class="nl">Water<small>target 3 L</small></div>
       <div class="ctl"><button onclick="bump('water',-0.25)" aria-label="less">−</button>
         <span class="nv" id="nwater">0</span>
         <button onclick="bump('water',0.25)" aria-label="more">+</button></div></div>
@@ -249,15 +250,29 @@
   </div>
 
   <div class="card">
+    <h3>Weekly numbers <span class="r">Sunday</span></h3>
+    <div class="num"><div class="nl">Weight<small>morning, kg</small></div>
+      <div class="ctl"><button onclick="bump('wt',-0.1)">−</button>
+        <span class="nv" id="nwt">0</span>
+        <button onclick="bump('wt',0.1)">+</button></div></div>
+    <div class="num"><div class="nl">Waist at navel<small>morning, cm</small></div>
+      <div class="ctl"><button onclick="bump('waist',-0.5)">−</button>
+        <span class="nv" id="nwaist">0</span>
+        <button onclick="bump('waist',0.5)">+</button></div></div>
+    <p class="prose" style="font-size:11.5px;margin-top:10px" id="avgline">—</p>
+  </div>
+
+  <div class="card">
     <h3>Daily four</h3>
     <div class="tk" data-k="protein" onclick="tog('protein')"><span class="box">✓</span>
-      <span class="tl">Protein 152 g<small>auto-ticks at 5 meals</small></span><span class="tv" id="hprot">0 g</span></div>
+      <span class="tl">Protein 155 g<small>auto-ticks at 5 meals</small></span><span class="tv" id="hprot">0 g</span></div>
     <div class="tk" data-k="session" onclick="tog('session')"><span class="box">✓</span>
       <span class="tl">Session done<small id="hsess">—</small></span></div>
     <div class="tk" data-k="steps" onclick="tog('steps')"><span class="box">✓</span>
       <span class="tl">10k steps<small>auto-ticks at 10,000</small></span><span class="tv" id="hstep">0</span></div>
     <div class="tk" data-k="kitchen" onclick="tog('kitchen')"><span class="box">✓</span>
       <span class="tl">Kitchen shut 21:00<small>no food after</small></span></div>
+    <div class="call blue" style="margin-top:12px"><b>The floor on a bad day:</b> calories roughly sensible, <b>≥130 g protein</b>, <b>≥8k steps.</b> Preventing an unplanned 2,800-kcal day matters far more than hitting exactly 155 g.</div>
   </div>
 
   <div class="card">
@@ -277,9 +292,9 @@
 <!-- ══════════ B · PLAN ══════════ -->
 <section id="p-plan" class="page">
  <div class="wrap">
-  <div class="eyeb">The block</div>
-  <h2 class="big">Cut the waist.<br><em>Keep the muscle.</em></h2>
-  <p class="sub">73.0 kg → 66.1 · 1,795 kcal · 152 g protein</p>
+  <div class="eyeb">6-week fat-loss block · rev 13</div>
+  <h2 class="big">Get lean.<br><em>Keep the frame.</em></h2>
+  <p class="sub">~1,810 kcal · 155 g protein · 4 lifting days · 0.4–0.6 kg/week</p>
 
   <div class="card" style="background:linear-gradient(135deg,#ff5a3d,#ff8a3d);color:#fff">
     <h3 style="color:rgba(255,255,255,.75)">Tomorrow</h3>
@@ -288,21 +303,31 @@
   </div>
 
   <div class="card">
-    <h3>The week <span class="r">tap a day</span></h3>
-    <div id="weeklist"></div>
+    <h3>Set your own start line</h3>
+    <div class="call blue"><b>Don't anchor to the July scan.</b> Take your current 7-day morning-weight average and your waist at navel as day zero. If you're near 72 kg, the six-week target zone is <b>68.5–69.5 kg</b> — not 66.1.</div>
+    <div class="lrow"><span>Rate</span><span class="lv">0.4–0.6 kg/wk · up to 0.7 if strength holds</span></div>
+    <div class="lrow"><span>Primary outcomes</span><span class="lv">waist · photos · lift retention</span></div>
+    <div class="lrow"><span>Secondary</span><span class="lv">7-day weight average</span></div>
   </div>
 
-  <div id="d-mon" class="dayblk"><div class="card"><h3>Monday · Legs · RPE 7–8</h3>
+  <div class="card">
+    <h3>The week <span class="r">tap a day</span></h3>
+    <div id="weeklist"></div>
+    <div class="call">Four lifting days, not five. <b>Sunday is now genuine recovery</b> — you were running six straight activity days from Wednesday to Monday. Four done consistently beats five done sixty percent of the time.</div>
+  </div>
+
+  <div id="d-mon" class="dayblk"><div class="card"><h3>Monday · Legs + abs · RPE 7–8</h3>
     <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">5 min bike · leg swings · hip-flexor opener · bird dog 2×8/side</div></div></div>
-    <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Romanian Deadlift</span><span class="es">3 × 8</span></div><div class="enote">Your only heavy spinal loader. Neutral spine, hinge at the hips, stop 2 reps short. Never grind. Rest 2–3 min.</div></div></div>
-    <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Hack Squat / Leg Press</span><span class="es">3 × 10</span></div><div class="enote">Back-supported quads. Rest 2 min.</div></div></div>
-    <div class="ex"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Hip Thrust</span><span class="es">3 × 10</span></div><div class="enote">Glutes and posterior chain. Rest 90 s.</div></div></div>
-    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Seated Leg Curl</span><span class="es">3 × 12</span></div><div class="enote">Hamstrings. Rest 75 s.</div></div></div>
-    <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Standing Calf Raise</span><span class="es">3 × 15</span></div><div class="enote">Full stretch at the bottom.</div></div></div>
-    <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Dead Bug + Suitcase Carry</span><span class="es">3 rds</span></div><div class="enote">Dead bug 10/side · carry 30 m/side. Spine insurance.</div></div></div>
+    <div class="ex"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Hack Squat / Leg Press</span><span class="es">3 × 8–10</span></div><div class="enote">Back-supported quads. Rest 2 min.</div></div></div>
+    <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Hip Thrust</span><span class="es">3 × 8–12</span></div><div class="enote">Glutes and posterior chain — covers what the RDL did, without loading the spine. Rest 90 s.</div></div></div>
+    <div class="ex"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Bulgarian Split Squat</span><span class="es">2 × 10/leg</span></div><div class="enote">Optional. Bodyweight or light DBs.</div></div></div>
+    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Seated Leg Curl</span><span class="es">4 × 10–15</span></div><div class="enote">Hamstrings get the volume the hinge would have given. Rest 75 s.</div></div></div>
+    <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Calf Raise</span><span class="es">3 × 12–15</span></div><div class="enote">Full stretch at the bottom.</div></div></div>
+    <div class="ex key"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Ab Block</span><span class="es">3 moves</span><span class="vt">Abs</span></div><div class="enote">Cable crunch 3×8–12 <b>loaded</b> · hanging knee raise 3×10–15 · Pallof press 2×10–15/side.</div></div></div>
+    <div class="call">No RDL. With a back you're protecting and no love for hinges, there's no physique gain worth the friction.</div>
   </div></div>
 
-  <div id="d-wed" class="dayblk"><div class="card"><h3>Wednesday · Push · RPE 8</h3>
+  <div id="d-wed" class="dayblk"><div class="card"><h3>Wednesday · Push + Zone 2</h3>
     <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Band pull-aparts 2×20 · dislocates · one light press set</div></div></div>
     <div class="ex"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Incline DB Press</span><span class="es">3 × 8–10</span></div><div class="enote">Upper chest. Rest 2 min.</div></div></div>
     <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Seated Overhead Press</span><span class="es">3 × 8–10</span></div><div class="enote">Pain-free range only. Rest 2 min.</div></div></div>
@@ -312,81 +337,95 @@
     <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Zone-2 Cardio</span><span class="es">25–30 min</span></div><div class="enote">Incline walk or cycle, conversational pace. After lifting.</div></div></div>
   </div></div>
 
-  <div id="d-thu" class="dayblk"><div class="card"><h3>Thursday · Pull · low back load</h3>
+  <div id="d-thu" class="dayblk"><div class="card"><h3>Thursday · Pull + abs</h3>
     <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Scap pull-ups 2×10 · band pull-aparts · cat-cow ×8</div></div></div>
     <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Wide-Grip Lat Pulldown</span><span class="es">4 × 10</span><span class="vt">V-taper</span></div><div class="enote">Elbows down, full stretch at the top. Rest 90 s.</div></div></div>
     <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Chest-Supported Row</span><span class="es">3 × 10</span></div><div class="enote">Thickness with zero lower-back load. Rest 90 s.</div></div></div>
     <div class="ex key"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Straight-Arm Pulldown</span><span class="es">3 × 12</span><span class="vt">V-taper</span></div><div class="enote">Isolates the lats — pure width. Rest 60 s.</div></div></div>
     <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Face Pull</span><span class="es">3 × 15</span></div><div class="enote">Rear delt · bowling insurance. Rest 45 s.</div></div></div>
     <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Incline DB Curl</span><span class="es">3 × 12</span></div><div class="enote">Biceps under stretch. Rest 45 s.</div></div></div>
-    <div class="ex key"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Ab Block</span><span class="es">3 moves</span><span class="vt">Abs</span></div><div class="enote">Hanging knee raise 3×12–15 · cable crunch 3×15 light · Pallof press 3×12/side.</div></div></div>
+    <div class="ex key"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Ab Block</span><span class="es">3 moves</span><span class="vt">Abs</span></div><div class="enote">Cable crunch 3×8–12 loaded · hanging knee raise 3×10–15 · Pallof press 2×10–15/side.</div></div></div>
   </div></div>
 
-  <div id="d-fri" class="dayblk"><div class="card"><h3>Friday · Delts &amp; Arms · RPE 6–7</h3>
-    <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Band work · arm circles. Easy — legs and back stay fresh for tomorrow.</div></div></div>
-    <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Lateral Raise</span><span class="es">4 × 15</span><span class="vt">V-taper</span></div><div class="enote">Second delt-width session. Drop-set the last set. Rest 45 s.</div></div></div>
-    <div class="ex key"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Cable Lateral Raise</span><span class="es">3 × 15</span><span class="vt">V-taper</span></div><div class="enote">Constant tension through the range.</div></div></div>
+  <div id="d-fri" class="dayblk"><div class="card"><h3>Friday · Delts, arms + lat width + Zone 2</h3>
+    <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">Band work · arm circles. Keep it light — legs and back stay fresh for tomorrow.</div></div></div>
+    <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Lateral Raise</span><span class="es">4 × 15</span><span class="vt">V-taper</span></div><div class="enote">Second delt-width session. Rest 45 s.</div></div></div>
+    <div class="ex key"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Straight-Arm Pulldown</span><span class="es">2–3 × 15</span><span class="vt">V-taper</span></div><div class="enote">Light lat-width work — keeps lats at 2×/week now Sunday is a rest day.</div></div></div>
     <div class="ex"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Rear Delt Fly</span><span class="es">3 × 15</span></div><div class="enote">Widens the upper back. Rest 45 s.</div></div></div>
     <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Cable Curl</span><span class="es">3 × 15</span></div><div class="enote">Rest 40 s.</div></div></div>
     <div class="ex"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Overhead Triceps Ext.</span><span class="es">3 × 12</span></div><div class="enote">Long-head stretch. Rest 40 s.</div></div></div>
     <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">Zone-2 Cardio</span><span class="es">25–30 min</span></div><div class="enote">Low impact only. No running the day before a match.</div></div></div>
   </div></div>
 
-  <div id="d-sun" class="dayblk"><div class="card"><h3>Sunday · Back &amp; Core · no spinal load</h3>
-    <div class="ex"><span class="ix">W</span><div class="eb"><div class="et"><span class="en">Warm-up</span></div><div class="enote">5 min bike · thoracic rotations · cat-cow. Day after bowling. Vitamin D3 today.</div></div></div>
-    <div class="ex key"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Neutral-Grip Pulldown</span><span class="es">3 × 12</span><span class="vt">V-taper</span></div><div class="enote">Second lat-width session. Rest 75 s.</div></div></div>
-    <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Chest-Supported Row</span><span class="es">3 × 12</span></div><div class="enote">Lighter than Thursday. Rest 75 s.</div></div></div>
-    <div class="ex key"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Straight-Arm Pulldown</span><span class="es">3 × 15</span><span class="vt">V-taper</span></div><div class="enote">Rest 45 s.</div></div></div>
-    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Face Pull</span><span class="es">3 × 20</span></div><div class="enote">Shoulder recovery after a bowling spell.</div></div></div>
-    <div class="ex key"><span class="ix">5</span><div class="eb"><div class="et"><span class="en">Ab Block</span><span class="es">3 moves</span><span class="vt">Abs</span></div><div class="enote">Hanging knee raise · cable crunch light · Pallof press.</div></div></div>
-    <div class="ex"><span class="ix">6</span><div class="eb"><div class="et"><span class="en">McGill Big-3 + Mobility</span><span class="es">1 round</span></div><div class="enote">Curl-up · side plank 30 s/side · bird dog. Then hips and t-spine.</div></div></div>
+  <div id="d-sun" class="dayblk"><div class="card"><h3>Sunday · Recovery</h3>
+    <div class="ex"><span class="ix">1</span><div class="eb"><div class="et"><span class="en">Easy walk</span><span class="es">40–60 min</span></div><div class="enote">Outdoors, conversational. Not a training session.</div></div></div>
+    <div class="ex"><span class="ix">2</span><div class="eb"><div class="et"><span class="en">Mobility</span><span class="es">10–15 min</span></div><div class="enote">Hips, thoracic spine, shoulders. Day after bowling.</div></div></div>
+    <div class="ex"><span class="ix">3</span><div class="eb"><div class="et"><span class="en">Weigh + waist + photos</span><span class="es">morning</span></div><div class="enote">Log both in the Today tab. Photos every second Sunday.</div></div></div>
+    <div class="ex"><span class="ix">4</span><div class="eb"><div class="et"><span class="en">Cook &amp; shop</span><span class="es">the week</span></div><div class="enote">1.75 kg chicken portioned · standing list.</div></div></div>
+    <div class="call green">No lifting. You train hard Mon–Sat including cricket; this is the day that makes the rest repeatable.</div>
   </div></div>
 
   <div class="card">
-    <h3>Cardio &amp; steps · the engine</h3>
-    <div class="call"><b>At 1,795 kcal the food sits near maintenance. The cardio and steps are the deficit.</b> Skip them and the plan stalls.</div>
-    <div class="lrow"><span>Zone-2</span><span class="lv">Wed + Fri · 25–30 min</span></div>
-    <div class="lrow"><span>Daily steps</span><span class="lv">10–12k</span></div>
-    <div class="lrow"><span>Saturday</span><span class="lv">Cricket only · no extra</span></div>
-    <div class="call">No weighted side bends or loaded twists — they thicken the waist.</div>
+    <h3>Calorie logic</h3>
+    <div class="call blue"><b>1,810 kcal is a starting prescription, not a known deficit.</b> Real maintenance gets inferred from your 14-day weight trend. Hold it unchanged for the first two weeks.</div>
+    <div class="lrow"><span>Losing 0.4–0.7 kg/wk</span><span class="lv grn">change nothing</span></div>
+    <div class="lrow"><span>&lt;0.3 kg/wk for 2 wks, adherence real</span><span class="lv red">−100–150 kcal <b>or</b> +2k steps</span></div>
+    <div class="lrow"><span>&gt;0.8 kg/wk + performance dipping</span><span class="lv">+100–150 kcal</span></div>
+    <div class="lrow"><span>Waist down, weight flat</span><span class="lv grn">change nothing</span></div>
+    <div class="call">One lever at a time — never cut food <b>and</b> add steps in the same week, or you won't know which did it.</div>
   </div>
 
   <div class="card">
     <h3>The five meals</h3>
-    <div class="meal"><div class="mh"><div><div class="mt">01 · Breakfast · post-gym</div><div class="mn">40 g oats · 100 g low-fat curd · 25 g whey · 10 g chia</div></div><div class="mc">385</div></div>
-      <div class="mac"><span>P <b>41</b></span><span>C <b>41</b></span><span>F <b>8.5</b></span><span>Fib <b>9</b></span></div>
-      <div class="mnote">Chia only — no pumpkin or flax on top or the meal breaks the fat ceiling.</div></div>
-    <div class="meal"><div class="mh"><div><div class="mt">02 · Lunch</div><div class="mn">125 g chicken · 50 g rice · 200 g veg · 3 g olive oil · 100 g curd</div></div><div class="mc">537</div></div>
-      <div class="mac"><span>P <b>49</b></span><span>C <b>58</b></span><span>F <b>9.6</b></span><span>Fib <b>7</b></span></div>
-      <div class="mnote">Oil at 3 g to make room for the curd — daily calcium for bone mass.</div></div>
-    <div class="meal"><div class="mh"><div><div class="mt">03 · Snack · 15:30</div><div class="mn">Apple 200 g</div></div><div class="mc">104</div></div>
-      <div class="mac"><span>P <b>0.5</b></span><span>C <b>28</b></span><span>F <b>0.3</b></span><span>Fib <b>5</b></span></div>
-      <div class="mnote">Skin on — that's where the fibre is.</div></div>
-    <div class="meal"><div class="mh"><div><div class="mt">04 · Evening · 18:00</div><div class="mn">Sandwich — 2 wheat bread, 50 g paneer, 1 cheese slice, capsicum, tomato</div></div><div class="mc">290</div></div>
-      <div class="mac"><span>P <b>20</b></span><span>C <b>35</b></span><span>F <b>9.0</b></span><span>Fib <b>5</b></span></div>
-      <div class="mnote">The bridge meal. Skip tomato if reflux stirs.</div></div>
-    <div class="meal"><div class="mh"><div><div class="mt">05 · Dinner · 20:45 — the big one</div><div class="mn">125 g chicken · 40 g rice · 250 g veg · 5 g olive oil</div></div><div class="mc">479</div></div>
-      <div class="mac"><span>P <b>43</b></span><span>C <b>54</b></span><span>F <b>10.4</b></span><span>Fib <b>8</b></span></div>
-      <div class="mnote">Largest meal, as late as the reflux rule allows. Go to bed full, not hungry at 23:00.</div></div>
+    <div class="call">Convention: <b>chicken weighed raw · rice weighed dry · oil in grams</b> · paneer and bread by package label. Keep it consistent or the target isn't reproducible.</div>
+    <div class="meal"><div class="mh"><div><div class="mt">01 · Breakfast · post-gym</div><div class="mn">40 g oats (dry) · 100 g low-fat curd · 25 g whey · 10 g chia · 5 almonds</div></div><div class="mc">420</div></div>
+      <div class="mac"><span>P <b>42</b></span><span>C <b>42</b></span><span>F <b>11.5</b></span><span>Fib <b>8.5</b></span></div></div>
+    <div class="meal"><div class="mh"><div><div class="mt">02 · Lunch</div><div class="mn">125 g chicken (raw) · 45 g rice (dry) · 200 g veg · 5 g olive oil · 100 g curd</div></div><div class="mc">521</div></div>
+      <div class="mac"><span>P <b>48</b></span><span>C <b>54</b></span><span>F <b>11.6</b></span><span>Fib <b>7</b></span></div></div>
+    <div class="meal"><div class="mh"><div><div class="mt">03 · Snack · 15:30</div><div class="mn">Apple 200 g · 10 g pumpkin seeds</div></div><div class="mc">158</div></div>
+      <div class="mac"><span>P <b>3</b></span><span>C <b>29</b></span><span>F <b>4.9</b></span><span>Fib <b>5.5</b></span></div></div>
+    <div class="meal"><div class="mh"><div><div class="mt">04 · Evening · 18:00</div><div class="mn">Sandwich — 2 wheat bread, 50 g low-fat paneer, 1 cheese slice, capsicum, tomato</div></div><div class="mc">290</div></div>
+      <div class="mac"><span>P <b>20</b></span><span>C <b>35</b></span><span>F <b>9.0</b></span><span>Fib <b>5</b></span></div></div>
+    <div class="meal"><div class="mh"><div><div class="mt">05 · Dinner · 20:45</div><div class="mn">125 g chicken (raw) · 30 g rice (dry) · 250 g veg · 5 g olive oil</div></div><div class="mc">421</div></div>
+      <div class="mac"><span>P <b>43</b></span><span>C <b>39</b></span><span>F <b>9.5</b></span><span>Fib <b>6</b></span></div></div>
+    <div class="call green"><b>Day total: 1,810 kcal · 157 P · 199 C · 46 F · 32 g fibre.</b> Fat is now 23% of calories — up from 19%, which was too low.</div>
   </div>
 
   <div class="card">
-    <h3>Constraints · non-negotiable</h3>
-    <div class="lrow"><span>Fat per meal</span><span class="lv red">Max 12 g</span></div>
-    <div class="lrow"><span>Last meal</span><span class="lv">By 21:00</span></div>
-    <div class="lrow"><span>Reflux triggers</span><span class="lv">No chocolate · coffee · citrus · chilli</span></div>
-    <div class="lrow"><span>Fish</span><span class="lv">None · capsule counts as fat</span></div>
-    <div class="lrow"><span>Water</span><span class="lv red">3–3.5 L · non-negotiable</span></div>
-    <div class="lrow"><span>Whey</span><span class="lv">one go, post-workout · never sipped</span></div>
+    <h3>Fat handling</h3>
+    <div class="lrow"><span>Daily total</span><span class="lv">45–50 g, spread evenly</span></div>
+    <div class="lrow"><span>Per-meal soft cap</span><span class="lv">10–12 g</span></div>
+    <div class="lrow"><span>Highest meal here</span><span class="lv grn">11.6 g</span></div>
+    <div class="call blue">The per-meal cap is a <b>tolerance tool, not a permanent medical rule.</b> Most people don't require a low-fat diet indefinitely after gallbladder removal. Keep the cap while it's serving you — if you find larger fat loads cause no symptoms, discuss relaxing it with your doctor rather than with a plan file.</div>
   </div>
 
   <div class="card">
-    <h3>Vegetable base</h3>
-    <div class="lrow"><span>Lunch · 200 g</span><span class="lv">beans 70 · gourd 70 · carrot 60</span></div>
-    <div class="lrow"><span>Dinner · 250 g</span><span class="lv">beans 80 · gourd 80 · carrot 50 · spinach 40</span></div>
-    <div class="lrow"><span>Seasoning</span><span class="lv">cumin · ginger · turmeric · coriander</span></div>
-    <div class="lrow"><span>Excluded</span><span class="lv red">cabbage · chilli · raw onion</span></div>
-    <div class="call">Rotate <b>only the spinach slot</b> — methi, broccoli, bottle gourd. Base stays fixed.</div>
+    <h3>Gut protocol · an experiment, not a diagnosis</h3>
+    <div class="call blue">Oats and chia are <b>a trial</b>, not a proven fix. Run them 7–10 days. Keep them if bowel regularity genuinely improves; if nothing changes, the cause was something else.</div>
+    <div class="lrow"><span>Method</span><span class="lv">change one thing, judge after 7–10 days</span></div>
+    <div class="lrow"><span>Cabbage</span><span class="lv">removed as a suspect · reintroduce later to test</span></div>
+    <div class="lrow"><span>Water</span><span class="lv red">3 L+ · fibre without water makes it worse</span></div>
+    <div class="lrow"><span>Whey</span><span class="lv">one go post-workout · never sipped</span></div>
+    <div class="call">If symptoms persist past a fortnight, or you get pain, cramping or blood — that's a doctor's question, not a diet tweak.</div>
+  </div>
+
+  <div class="card">
+    <h3>Saturday · cricket</h3>
+    <div class="lrow"><span>14:00–15:00</span><span class="lv">substantial lunch</span></div>
+    <div class="lrow"><span>18:00</span><span class="lv">sandwich + banana before play</span></div>
+    <div class="lrow"><span>19:00</span><span class="lv">full dinner — pre-load</span></div>
+    <div class="lrow"><span>During</span><span class="lv">fluids + electrolytes</span></div>
+    <div class="lrow"><span>01:00 post-match</span><span class="lv red">whey only</span></div>
+    <div class="lrow"><span>Match-day allowance</span><span class="lv grn">+150–250 kcal, mostly carbs</span></div>
+    <div class="call"><b>The pre-load stays</b> — your match ends near 1 am and your reflux rule blocks food within 3 hours of sleep, so a post-match meal isn't available to you. But a hard cricket day earns extra fuel: take it <b>before</b> play, not after.</div>
+    <div class="call green">Never starve the next day to compensate. The six-week result comes from the weekly trend, not from making Saturday miserable.</div>
+  </div>
+
+  <div class="card">
+    <h3>Saturday · no match</h3>
+    <div class="lrow"><span>Zone-2</span><span class="lv">40–45 min</span></div>
+    <div class="lrow"><span>Steps</span><span class="lv">12–15k</span></div>
+    <div class="lrow"><span>Food</span><span class="lv">standard five · no match allowance</span></div>
   </div>
 
   <div class="card">
@@ -400,66 +439,46 @@
   </div>
 
   <div class="card">
-    <h3>Saturday · match script</h3>
-    <div class="lrow"><span>18:00 sandwich</span><span class="lv">290 kcal</span></div>
-    <div class="lrow"><span>19:00 full dinner</span><span class="lv">pre-load</span></div>
-    <div class="lrow"><span>Shaker packed before leaving</span><span class="lv">30 g whey, dry</span></div>
-    <div class="lrow"><span>01:00 post-match</span><span class="lv red">whey only · nothing else</span></div>
-    <div class="lrow"><span>Route home</span><span class="lv red">no stops</span></div>
-    <div class="call"><b>Five weekdays at −400 is −2,000. One loose Saturday plus a loose Sunday is +2,000.</b> Two days can erase five.</div>
+    <h3>Vegetable base</h3>
+    <div class="lrow"><span>Lunch · 200 g</span><span class="lv">beans 70 · gourd 70 · carrot 60</span></div>
+    <div class="lrow"><span>Dinner · 250 g</span><span class="lv">beans 80 · gourd 80 · carrot 50 · spinach 40</span></div>
+    <div class="lrow"><span>Seasoning</span><span class="lv">cumin · ginger · turmeric · coriander</span></div>
+    <div class="lrow"><span>Avoid</span><span class="lv red">green chilli · raw onion</span></div>
+    <div class="call">Rotate <b>only the spinach slot</b> — methi, broccoli, bottle gourd.</div>
   </div>
 
   <div class="card">
-    <h3>Saturday · no match</h3>
-    <div class="lrow"><span>Zone-2</span><span class="lv">40–45 min</span></div>
-    <div class="lrow"><span>Optional light lower</span><span class="lv">15 min</span></div>
-    <div class="lrow"><span>Steps</span><span class="lv">12–15k</span></div>
-    <div class="lrow"><span>Food</span><span class="lv">standard weekday five</span></div>
-    <div class="lrow"><span>Pre-load + post whey</span><span class="lv red">no · match-day only</span></div>
-  </div>
-
-  <div class="card">
-    <h3>Sunday · operating day</h3>
-    <div class="lrow"><span>07:00 weigh + waist</span><span class="lv">log both</span></div>
-    <div class="lrow"><span>Cook the week's chicken</span><span class="lv">1.75 kg → 14 portions</span></div>
-    <div class="lrow"><span>Shop the standing list</span><span class="lv">same every week</span></div>
-    <div class="lrow"><span>Vitamin D3</span><span class="lv">60,000 IU</span></div>
-    <div class="call">The plan only survives if the food is <b>already cooked.</b></div>
-  </div>
-
-  <div class="card">
-    <h3>Weekly shopping</h3>
-    <div class="lrow"><span>Chicken breast</span><span class="lv">1.75 kg</span></div>
-    <div class="lrow"><span>Low-fat paneer</span><span class="lv">700 g</span></div>
+    <h3>Weekly shopping <span class="r">corrected</span></h3>
+    <div class="lrow"><span>Chicken breast (raw)</span><span class="lv">1.75 kg</span></div>
+    <div class="lrow"><span>Low-fat paneer</span><span class="lv grn">350 g</span></div>
+    <div class="lrow"><span>Cheese slices</span><span class="lv grn">7</span></div>
     <div class="lrow"><span>Low-fat curd</span><span class="lv">1.4 kg</span></div>
-    <div class="lrow"><span>Cheese slices</span><span class="lv">14</span></div>
-    <div class="lrow"><span>Wheat bread</span><span class="lv">2 loaves</span></div>
-    <div class="lrow"><span>Rice</span><span class="lv">600 g</span></div>
+    <div class="lrow"><span>Wheat bread</span><span class="lv grn">14 slices · 1 loaf</span></div>
+    <div class="lrow"><span>Rice (dry)</span><span class="lv">525 g</span></div>
     <div class="lrow"><span>Oats · chia</span><span class="lv">280 g / 70 g</span></div>
     <div class="lrow"><span>Whey</span><span class="lv">175 g</span></div>
     <div class="lrow"><span>Apples</span><span class="lv">1.4 kg</span></div>
-    <div class="lrow"><span>Beans · gourd · carrot · spinach</span><span class="lv">1.0 / 1.0 / 0.8 / 0.3 kg</span></div>
-    <div class="lrow"><span>Creatine · fish oil · D3</span><span class="lv">daily / daily / Sun</span></div>
+    <div class="lrow"><span>Almonds · pumpkin seeds</span><span class="lv">35 / 70 g</span></div>
+    <div class="lrow"><span>Beans · gourd · carrot · spinach</span><span class="lv">1.0 / 1.0 / 0.8 / 0.35 kg</span></div>
+    <div class="call">Paneer and cheese were <b>double-counted</b> in the last version — that's fixed. You eat 50 g paneer and 1 slice a day, so 350 g and 7 slices a week.</div>
   </div>
 
   <div class="card">
-    <h3>Baseline · 19 Jul scan</h3>
-    <div class="lrow"><span>Weight</span><span class="lv">73.0 kg → 66.1</span></div>
-    <div class="lrow"><span>Body fat</span><span class="lv">22.4% · 16.2 kg</span></div>
-    <div class="lrow"><span>Trunk fat — the target</span><span class="lv">8.3 kg</span></div>
-    <div class="lrow"><span>Visceral fat</span><span class="lv grn">Level 6 · protective</span></div>
-    <div class="lrow"><span>Resting HR</span><span class="lv grn">69 bpm</span></div>
-    <div class="lrow"><span>Protein mass</span><span class="lv">11.1 → 12.0 kg</span></div>
-    <div class="lrow"><span>Bone mass</span><span class="lv">3.1 → 3.2 kg</span></div>
+    <h3>Supplements</h3>
+    <div class="lrow"><span>Creatine</span><span class="lv">3–5 g daily</span></div>
+    <div class="lrow"><span>Fish oil</span><span class="lv">1 cap · counts toward fat</span></div>
+    <div class="lrow"><span>Vitamin D3</span><span class="lv red">ask your doctor</span></div>
+    <div class="call warn" style="border-left-color:#ff8a72"><b>Vitamin D needs a real answer, not a habit.</b> Your January lab read 43.7 ng/mL — already within the sufficient range. A standing 60,000 IU weekly dose shouldn't perpetuate itself because a plan file says so. Ask your doctor whether it was meant to be time-limited and when to retest. Routine adult upper intake is around 4,000 IU/day; higher therapeutic doses belong under supervision.</div>
   </div>
 
   <div class="card">
-    <h3>Fortnightly checkpoint</h3>
-    <div class="lrow"><span>Losing 0.5–0.7 kg/wk</span><span class="lv grn">hold</span></div>
-    <div class="lrow"><span>Losing &lt;0.3 kg/wk, adherence tight</span><span class="lv red">+1 cardio</span></div>
-    <div class="lrow"><span>Losing &gt;0.8 kg/wk or lifts dipping</span><span class="lv">+150 kcal</span></div>
-    <div class="lrow"><span>Waist down, weight flat</span><span class="lv grn">change nothing</span></div>
-    <div class="call blue">Measure the waist at the navel, Sunday morning. Weigh daily but only read the <b>7-day average.</b></div>
+    <h3>What we measure</h3>
+    <div class="lrow"><span>Waist at navel</span><span class="lv">weekly · Sunday morning</span></div>
+    <div class="lrow"><span>Weight</span><span class="lv">daily · read 7-day average</span></div>
+    <div class="lrow"><span>Photos</span><span class="lv">every 2 weeks</span></div>
+    <div class="lrow"><span>Key lift loads</span><span class="lv">every session</span></div>
+    <div class="lrow"><span>Steps</span><span class="lv">daily</span></div>
+    <div class="call blue">Outcomes are <b>waist, photos, strength retention and the weight trend.</b> Not BIA protein or bone-mass readings — those are estimates, not clinical measurements, and they're the wrong thing to program against. If bone density ever became a genuine concern, DXA is the clinical tool.</div>
   </div>
 
   <div class="card">
@@ -469,17 +488,18 @@
       <li><span class="pi">2</span><div><b>Target 85%, not 100%.</b> Six good days weekly beats seven perfect then a collapse.</div></li>
       <li><span class="pi">3</span><div><b>A bad meal ends at that meal.</b> No compensating, no starting Monday.</div></li>
       <li><span class="pi">4</span><div><b>Decide once, in advance.</b> Any decision left to the moment is made tired.</div></li>
-      <li><span class="pi">5</span><div><b>The floor:</b> 150 g protein + 8k steps. Hit it and nothing is broken.</div></li>
+      <li><span class="pi">5</span><div><b>The floor:</b> calories sensible, ≥130 g protein, ≥8k steps.</div></li>
+      <li><span class="pi">6</span><div><b>Double progression.</b> Top of the rep range on all sets, then add load. Abs included.</div></li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Projected outcome · 8 weeks</h3>
-    <p class="prose">At 0.5–0.7 kg per week you'll shift <b>4–5 kg of fat</b>, landing near <b>16–18% body fat</b>. Expect a visibly tighter waist and <b>upper abs showing</b> in good light and when flexed.</p>
-    <p class="prose">A permanently visible six-pack sits at <b>11–13%</b> — a 14–16 week job from 22.4%. This block gets most of the way with the muscle intact.</p>
+    <h3>Six weeks · honest expectation</h3>
+    <p class="prose">At 0.4–0.6 kg per week you'll drop roughly <b>3–4 kg</b>. From around 22% body fat that puts you near <b>18–19%</b> — waist visibly tighter, shoulders more obvious against it, <b>upper abs showing in good light.</b></p>
+    <p class="prose">A permanently visible six-pack sits nearer <b>11–13%</b>. That's a longer job, and chasing it faster is how you end up smaller, flatter and exhausted rather than lean. Six weeks, reassess with real numbers, then decide whether to run another block.</p>
   </div>
 
-  <p class="disc">Coaching guidance built around your stated constraints — post-cholecystectomy fat limit, reflux, low bone mass, no current back pain. Not medical advice. New or worsening back pain, reflux that won't settle, persistent bowel changes, or any concerning symptom: stop and see your doctor or physio.</p>
+  <p class="disc">Coaching guidance built around your stated constraints — post-cholecystectomy fat tolerance, reflux, back protection. Not medical advice, and not a substitute for your doctor on vitamin D dosing, fat tolerance, bone density or persistent gut symptoms. New or worsening back pain, reflux that won't settle, ongoing bowel changes, or any concerning symptom: stop and get it looked at.</p>
  </div>
 </section>
 
@@ -490,27 +510,27 @@
 
 <script>
 (function(){
-  var KEY='vtaper.v2';
+  var KEY='vtaper.v3';
   var ITEMS=['protein','session','steps','kitchen'];
 
   var MEALS=[
-    {id:1,t:'Breakfast · post-gym',n:'Oats · curd · whey · chia',k:385,p:41},
-    {id:2,t:'Lunch',n:'Chicken · rice · veg · curd',k:537,p:49},
-    {id:3,t:'Snack · 15:30',n:'Apple 200 g',k:104,p:0.5},
-    {id:4,t:'Evening · 18:00',n:'Sandwich',k:290,p:20},
-    {id:5,t:'Dinner · 20:45',n:'Chicken · rice · veg',k:479,p:43}
+    {id:1,t:'Breakfast · post-gym',n:'Oats 40g · curd 100g · whey 25g · chia 10g · 5 almonds',k:420,p:42},
+    {id:2,t:'Lunch',n:'Chicken 125g raw · rice 45g dry · veg 200g · oil 5g · curd 100g',k:521,p:48},
+    {id:3,t:'Snack · 15:30',n:'Apple 200g · pumpkin seeds 10g',k:158,p:3},
+    {id:4,t:'Evening · 18:00',n:'Sandwich — bread, paneer 50g, 1 cheese slice',k:290,p:20},
+    {id:5,t:'Dinner · 20:45',n:'Chicken 125g raw · rice 30g dry · veg 250g · oil 5g',k:421,p:43}
   ];
 
   var W={
-    1:{name:'Legs — heavy',note:'Only heavy spinal day · 5 days clear of bowling',log:true,ex:[
-      {k:'rdl',n:'Romanian Deadlift',s:'3 × 8'},
-      {k:'hack',n:'Hack Squat / Leg Press',s:'3 × 10'},
-      {k:'hip',n:'Hip Thrust',s:'3 × 10'},
-      {k:'curl',n:'Seated Leg Curl',s:'3 × 12'},
-      {k:'calf',n:'Standing Calf Raise',s:'3 × 15'},
-      {k:'core',n:'Dead Bug + Carry',s:'3 rds'}]},
-    2:{name:'Rest — gym closed',note:'Drop the snack · ~1,660 kcal',log:false,ex:[]},
-    3:{name:'Push + cardio',note:'Chest · shoulders · triceps',log:true,ex:[
+    1:{name:'Legs + abs',note:'Hack squat, hip thrust, curls · no RDL',log:true,ex:[
+      {k:'hack',n:'Hack Squat / Leg Press',s:'3 × 8–10'},
+      {k:'hip',n:'Hip Thrust',s:'3 × 8–12'},
+      {k:'bss',n:'Bulgarian Split Squat',s:'2 × 10/leg'},
+      {k:'curl',n:'Seated Leg Curl',s:'4 × 10–15'},
+      {k:'calf',n:'Calf Raise',s:'3 × 12–15'},
+      {k:'abs1',n:'Ab Block — loaded',s:'3 moves'}]},
+    2:{name:'Rest — gym closed',note:'Full rest day',log:false,ex:[]},
+    3:{name:'Push + Zone 2',note:'Chest · shoulders · triceps',log:true,ex:[
       {k:'incdb',n:'Incline DB Press',s:'3 × 8–10'},
       {k:'ohp',n:'Seated Overhead Press',s:'3 × 8–10'},
       {k:'lat1',n:'Lateral Raise',s:'4 × 12–15'},
@@ -523,43 +543,35 @@
       {k:'sapd',n:'Straight-Arm Pulldown',s:'3 × 12'},
       {k:'face',n:'Face Pull',s:'3 × 15'},
       {k:'bic',n:'Incline DB Curl',s:'3 × 12'},
-      {k:'abs1',n:'Ab Block',s:'3 moves'}]},
-    5:{name:'Delts & arms + cardio',note:'Light — legs stay fresh for tomorrow',log:true,ex:[
+      {k:'abs2',n:'Ab Block — loaded',s:'3 moves'}]},
+    5:{name:'Delts, arms + Zone 2',note:'Light · includes lat-width sets',log:true,ex:[
       {k:'lat2',n:'Lateral Raise',s:'4 × 15'},
-      {k:'clat',n:'Cable Lateral Raise',s:'3 × 15'},
+      {k:'sapd2',n:'Straight-Arm Pulldown',s:'2–3 × 15'},
       {k:'rear',n:'Rear Delt Fly',s:'3 × 15'},
       {k:'ccurl',n:'Cable Curl',s:'3 × 15'},
       {k:'ohtri',n:'Overhead Triceps Ext.',s:'3 × 12'},
       {k:'z2b',n:'Zone-2 Cardio',s:'25–30 min'}]},
-    6:{name:'Cricket',note:'Counts as lower body + conditioning · whey only after',log:false,ex:[]},
-    0:{name:'Back & core + abs',note:'No spinal load · Vitamin D3 today',log:true,ex:[
-      {k:'ngpd',n:'Neutral-Grip Pulldown',s:'3 × 12'},
-      {k:'row2',n:'Chest-Supported Row',s:'3 × 12'},
-      {k:'sapd2',n:'Straight-Arm Pulldown',s:'3 × 15'},
-      {k:'face2',n:'Face Pull',s:'3 × 20'},
-      {k:'abs2',n:'Ab Block',s:'3 moves'},
-      {k:'mcg',n:'McGill Big-3 + Mobility',s:'1 round'}]}
+    6:{name:'Cricket',note:'Pre-load before play · +150–250 kcal allowance · whey only after',log:false,ex:[]},
+    0:{name:'Recovery',note:'Walk, mobility, weigh, cook. No lifting.',log:false,ex:[]}
   };
   var WEEK=[
-    {d:1,l:'Mon',n:'Legs — heavy',s:'5 days clear of bowling',id:'mon',pin:''},
+    {d:1,l:'Mon',n:'Legs + abs',s:'No RDL · loaded ab block',id:'mon',pin:'cool',tag:'a',tagl:'Abs'},
     {d:2,l:'Tue',n:'Rest',s:'',id:'',pin:'',tag:'n',tagl:'Closed'},
-    {d:3,l:'Wed',n:'Push',s:'Chest · shoulders · triceps',id:'wed',pin:'hot',tag:'c',tagl:'Cardio'},
-    {d:4,l:'Thu',n:'Pull',s:'Lat width',id:'thu',pin:'cool',tag:'a',tagl:'Abs'},
-    {d:5,l:'Fri',n:'Delts & arms',s:'Light — legs stay fresh',id:'fri',pin:'hot',tag:'c',tagl:'Cardio'},
-    {d:6,l:'Sat',n:'Cricket',s:'Lower body + conditioning',id:'',pin:'',tag:'g',tagl:'Match'},
-    {d:0,l:'Sun',n:'Back & core',s:'No spinal load',id:'sun',pin:'cool',tag:'a',tagl:'Abs'}
+    {d:3,l:'Wed',n:'Push',s:'Chest · shoulders · triceps',id:'wed',pin:'hot',tag:'c',tagl:'Zone 2'},
+    {d:4,l:'Thu',n:'Pull + abs',s:'Lat width',id:'thu',pin:'cool',tag:'a',tagl:'Abs'},
+    {d:5,l:'Fri',n:'Delts & arms',s:'Light · lat-width sets',id:'fri',pin:'hot',tag:'c',tagl:'Zone 2'},
+    {d:6,l:'Sat',n:'Cricket',s:'Pre-load before play',id:'',pin:'',tag:'g',tagl:'Match'},
+    {d:0,l:'Sun',n:'Recovery',s:'Walk · mobility · weigh · cook',id:'sun',pin:'',tag:'n',tagl:'Rest'}
   ];
 
   function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
   function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(log));}catch(e){alert('Storage full or blocked — export a backup.');}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(log));}catch(e){alert('Storage blocked — export a backup.');}}
   var log=load(), today=key(new Date());
 
   function rec(){
-    if(!log[today]) log[today]={meals:{},ex:{},steps:0,water:0,sleep:0,energy:0,box:{}};
-    var r=log[today];
-    r.meals=r.meals||{}; r.ex=r.ex||{}; r.box=r.box||{};
-    return r;
+    if(!log[today]) log[today]={meals:{},ex:{},steps:0,water:0,sleep:0,energy:0,wt:0,waist:0,box:{}};
+    var r=log[today]; r.meals=r.meals||{}; r.ex=r.ex||{}; r.box=r.box||{}; return r;
   }
   function count(r){var n=0;if(!r||!r.box)return 0;for(var i=0;i<ITEMS.length;i++)if(r.box[ITEMS[i]])n++;return n;}
 
@@ -572,8 +584,9 @@
   window.setRate=function(v){var r=rec();r.energy=(r.energy===v?0:v);save();paint();};
   window.tmeal=function(id){
     var r=rec(); r.meals[id]=!r.meals[id];
-    var n=0; for(var i=0;i<MEALS.length;i++) if(r.meals[MEALS[i].id]) n++;
-    if(n>=5) r.box.protein=true;
+    var n=0,pr=0;
+    for(var i=0;i<MEALS.length;i++) if(r.meals[MEALS[i].id]){n++;pr+=MEALS[i].p;}
+    if(pr>=130) r.box.protein=true;
     save(); paint();
   };
   window.tex=function(k){
@@ -587,63 +600,54 @@
     var r=rec(); r.ex[k]=r.ex[k]||{}; r.ex[k][f]=v; save();
     var el=document.getElementById('pr-'+k); if(el) el.textContent=prText(k,r.ex[k]);
   };
-  function best(k){
-    var b=0;
-    for(var d in log){ if(d===today) continue;
-      var e=(log[d].ex||{})[k]; if(e&&e.w){ var w=parseFloat(e.w)||0; if(w>b) b=w; } }
-    return b;
-  }
+  function best(k){var b=0;for(var d in log){if(d===today)continue;var e=(log[d].ex||{})[k];
+    if(e&&e.w){var w=parseFloat(e.w)||0;if(w>b)b=w;}}return b;}
   function prText(k,e){
     var b=best(k), w=parseFloat((e||{}).w)||0;
-    if(!w) return b? ('best '+b+' kg') : '';
+    if(!w) return b?('best '+b+' kg'):'';
     if(w>b&&b>0) return '★ new best — beat '+b+' kg';
     if(w>0&&b===0) return '★ first logged';
     return 'best '+b+' kg';
   }
+  function avg7(){
+    var vals=[],d=new Date();
+    for(var i=0;i<7;i++){var e=log[key(d)];if(e&&e.wt)vals.push(e.wt);d.setDate(d.getDate()-1);}
+    if(!vals.length) return null;
+    return vals.reduce(function(a,b){return a+b},0)/vals.length;
+  }
   window.expo=function(){
     var blob=new Blob([JSON.stringify(log,null,2)],{type:'application/json'});
-    var a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);
-    a.download='vtaper-backup-'+today+'.json';
-    a.click(); URL.revokeObjectURL(a.href);
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='vtaper-backup-'+today+'.json'; a.click(); URL.revokeObjectURL(a.href);
   };
   window.impo=function(ev){
-    var f=ev.target.files[0]; if(!f) return;
-    var fr=new FileReader();
-    fr.onload=function(){
-      try{ var d=JSON.parse(fr.result);
-        if(confirm('Replace all current data with this backup?')){ log=d; save(); paint(); } }
-      catch(e){ alert('That file could not be read.'); }
-    };
+    var f=ev.target.files[0]; if(!f) return; var fr=new FileReader();
+    fr.onload=function(){try{var d=JSON.parse(fr.result);
+      if(confirm('Replace all current data with this backup?')){log=d;save();paint();}}
+      catch(e){alert('That file could not be read.');}};
     fr.readAsText(f); ev.target.value='';
   };
-  window.wipe=function(){ if(confirm('Clear all tracked history? This cannot be undone.')){log={};save();paint();} };
+  window.wipe=function(){if(confirm('Clear all tracked history? This cannot be undone.')){log={};save();paint();}};
 
-  function streak(){
-    var n=0,d=new Date();
+  function streak(){var n=0,d=new Date();
     if(count(log[key(d)])<4) d.setDate(d.getDate()-1);
-    while(count(log[key(d)])===4){n++;d.setDate(d.getDate()-1);}
-    return n;
-  }
+    while(count(log[key(d)])===4){n++;d.setDate(d.getDate()-1);}return n;}
 
   function paint(){
     var now=new Date(), dow=now.getDay(), r=rec(), day=W[dow];
-
     document.getElementById('dateline').textContent=
       now.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
     document.getElementById('sessline').textContent=day.name+' · '+day.note;
     document.getElementById('hsess').textContent=day.name;
 
-    // meals
-    var ml=document.getElementById('meallist'), kc=0, pr=0, mn=0;
-    ml.innerHTML='';
+    var ml=document.getElementById('meallist'), kc=0, pr=0, mn=0; ml.innerHTML='';
     MEALS.forEach(function(m){
       var on=!!r.meals[m.id]; if(on){kc+=m.k;pr+=m.p;mn++;}
       var d=document.createElement('div');
       d.className='tk'+(on?' done':'');
       d.onclick=function(){tmeal(m.id)};
-      d.innerHTML='<span class="box">✓</span><span class="tl">'+m.t+
-        '<small>'+m.n+'</small></span><span class="tv">'+m.k+' · P'+m.p+'</span>';
+      d.innerHTML='<span class="box">✓</span><span class="tl">'+m.t+'<small>'+m.n+
+        '</small></span><span class="tv">'+m.k+' · P'+m.p+'</span>';
       ml.appendChild(d);
     });
     document.getElementById('mealr').textContent=mn+' / 5';
@@ -653,11 +657,10 @@
     document.getElementById('talp').classList.toggle('hit',pr>=150);
     document.getElementById('hprot').textContent=Math.round(pr)+' g';
 
-    // workout
     var el=document.getElementById('exlist'); el.innerHTML='';
     if(!day.log){
-      el.innerHTML='<p class="prose" style="font-size:12.5px">'+day.note+
-        '. Tick <b>Session done</b> below once the day is served.</p>';
+      el.innerHTML='<p class="prose" style="font-size:12.5px"><b>'+day.name+'.</b> '+day.note+
+        '<br><br>Tick <b>Session done</b> below once the day is served.</p>';
       document.getElementById('wkr').textContent=day.name;
     }else{
       var dn=0;
@@ -665,8 +668,7 @@
         var e=r.ex[x.k]||{}; if(e.done) dn++;
         var w=document.createElement('div');
         w.className='exr'+(e.done?' done':'');
-        w.innerHTML=
-          '<div class="eh"><span class="ebx">✓</span><span class="enm">'+x.n+
+        w.innerHTML='<div class="eh"><span class="ebx">✓</span><span class="enm">'+x.n+
           '</span><span class="esr">'+x.s+'</span></div>'+
           '<div class="inp"><input type="number" inputmode="decimal" placeholder="kg" value="'+
             (e.w!==undefined?e.w:'')+'" oninput="setv(\''+x.k+'\',\'w\',this.value)">'+
@@ -679,7 +681,6 @@
       document.getElementById('wkr').textContent=dn+' / '+day.ex.length;
     }
 
-    // numbers
     document.getElementById('nsteps').textContent=(r.steps||0).toLocaleString();
     document.getElementById('nsteps').className='nv'+((r.steps||0)>=10000?' hit':'');
     document.getElementById('nwater').textContent=(r.water||0).toFixed(2).replace(/\.?0+$/,'')+' L';
@@ -687,30 +688,25 @@
     document.getElementById('nsleep').textContent=(r.sleep||0)+' h';
     document.getElementById('nsleep').className='nv'+((r.sleep||0)>=7?' hit':'');
     document.getElementById('hstep').textContent=(r.steps||0).toLocaleString();
+    document.getElementById('nwt').textContent=(r.wt||0)?r.wt.toFixed(1):'—';
+    document.getElementById('nwaist').textContent=(r.waist||0)?r.waist.toFixed(1):'—';
+    var a7=avg7();
+    document.getElementById('avgline').innerHTML = a7
+      ? '7-day weight average: <b style="color:var(--ink)">'+a7.toFixed(2)+' kg</b> — this is the number that matters, not today\'s reading.'
+      : 'Log weight for a few mornings and the 7-day average appears here.';
 
-    var rt=document.getElementById('rate'); rt.innerHTML='';
-    for(var i=1;i<=5;i++){(function(v){
-      var b=document.createElement('button');
-      b.textContent=v; b.className=(r.energy===v?'on':'');
-      b.onclick=function(){setRate(v)}; rt.appendChild(b);
-    })(i);}
-
-    // daily four
     document.querySelectorAll('#p-today .tk[data-k]').forEach(function(e){
       e.classList.toggle('done',!!r.box[e.getAttribute('data-k')]);
     });
 
-    // ring + streak
-    var c=count(r), pct=c/4;
-    document.getElementById('rprog').setAttribute('stroke-dashoffset',(257.6*(1-pct)).toFixed(1));
+    var c=count(r);
+    document.getElementById('rprog').setAttribute('stroke-dashoffset',(257.6*(1-c/4)).toFixed(1));
     document.getElementById('rpct').textContent=c;
     var s=streak();
     document.getElementById('streakv').textContent=(s===1?'1 day':s+' days');
-    document.getElementById('streakl').textContent = s===0
-      ? 'Tick all four to start'
-      : (c===4?'All four done. Keep it unbroken.':'Finish today to extend it.');
+    document.getElementById('streakl').textContent = s===0?'Tick all four to start'
+      :(c===4?'All four done. Keep it unbroken.':'Finish today to extend it.');
 
-    // week strip
     var strip=document.getElementById('strip'); strip.innerHTML='';
     var mon=new Date(); mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
     var L=['M','T','W','T','F','S','S'], tot=0;
@@ -724,16 +720,14 @@
     }
     document.getElementById('wkcount').textContent=tot;
 
-    // plan: tomorrow + week list
     var tm=W[(dow+1)%7];
     document.getElementById('tmrname').textContent=tm.name;
     document.getElementById('tmrnote').textContent=tm.note;
     var wl=document.getElementById('weeklist'); wl.innerHTML='';
     WEEK.forEach(function(x){
-      var isToday=(x.d===dow);
-      var m=document.createElement('div');
-      m.className='mk';
-      m.innerHTML='<span class="pin '+(isToday?'now':x.pin)+'"></span><span class="mdy">'+x.l+
+      var isT=(x.d===dow);
+      var m=document.createElement('div'); m.className='mk';
+      m.innerHTML='<span class="pin '+(isT?'now':x.pin)+'"></span><span class="mdy">'+x.l+
         '</span><span class="mnm'+(x.n==='Rest'?' off':'')+'">'+x.n+
         (x.s?'<small>'+x.s+'</small>':'')+'</span>'+
         (x.tag?'<span class="mtg '+x.tag+'">'+x.tagl+'</span>':'');
@@ -745,7 +739,7 @@
   window.day2=function(id,el){
     var b=document.getElementsByClassName('dayblk'), was=el&&el.classList.contains('sel');
     for(var i=0;i<b.length;i++) b[i].classList.remove('on');
-    document.querySelectorAll('.mk').forEach(function(m){m.style.background=''});
+    document.querySelectorAll('.mk').forEach(function(m){m.classList.remove('sel');m.style.background=''});
     if(!was){ document.getElementById('d-'+id).classList.add('on');
       if(el){el.classList.add('sel');el.style.background='var(--card2)';
         setTimeout(function(){document.getElementById('d-'+id).scrollIntoView({behavior:'smooth',block:'start'})},60);} }
