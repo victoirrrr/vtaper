@@ -1,24 +1,16 @@
 {
-  "name": "V-Taper Plan",
-  "short_name": "V-Taper",
+  "name": "Training Edge",
+  "short_name": "Training Edge",
+  "description": "Daily training tracker: 4 strength days, 2 treadmill days, daily basics and weight trend.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#141419",
-  "theme_color": "#141419",
+  "background_color": "#F3F2EF",
+  "theme_color": "#F3F2EF",
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
