@@ -242,6 +242,13 @@ details.day[open] summary .ico:last-child{transform:rotate(90deg)}
 .stp .pg{font-family:var(--disp);font-size:17px;font-weight:600;white-space:nowrap}
 .stp .pg i{font-style:normal;font-family:var(--ui);font-size:12px;color:var(--ink-3);margin-left:2px}
 .fnote{margin:8px 0 0;color:var(--ink-2)}
+.wgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:16px}
+.wat{min-height:60px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid var(--line);display:grid;place-items:center;align-content:center;gap:2px;transition:background-color .3s var(--ease),border-color .3s var(--ease),transform .2s var(--ease)}
+.wat:active{transform:scale(.94)}
+.wat b{font-family:var(--disp);font-size:15px;font-weight:600;letter-spacing:-.03em}
+.wat small{font-size:11px;font-weight:600;color:var(--ink-3)}
+.wat.on{background:color-mix(in srgb,var(--run) 22%,transparent);border-color:color-mix(in srgb,var(--run) 55%,transparent)}
+.wat.on b{color:var(--run)}
 
 /* sheet + toast */
 .scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;animation:fade .25s both}
@@ -334,17 +341,16 @@ var BASICS = [
 
 
 /* ================= FUEL DATA ================= */
-var FUEL_KCAL=1900, FUEL_P=130;
-var SLOTS=[['b','Breakfast','After training, by 10:30 am'],['l','Lunch','1:30 pm, biggest meal'],['s','Snack','4:30 pm, planned'],['d','Dinner','By 8:00 pm, light']];
-var MEALS=[ // Mon..Sun. Each meal: [name, portion, kcal estimate, protein g estimate]
-  {b:['Overnight oats + 2 boiled eggs','40 g oats, almond milk, 1 scoop whey, chia, half a banana',550,45],l:['Paneer tikka + rajma + bhindi','100 g paneer, 1 katori rajma, 2 protein rotis',690,37],s:['Roasted chana + apple','30 g chana, 1 apple',190,7],d:['Tandoori chicken + sautéed veg','180 g chicken, capsicum, beans, zucchini',420,45]},
-  {b:['Moong dal chilla with paneer and veg','2 chillas, 50 g paneer, whey in water',480,47],l:['Chicken curry + moong dal + lauki','150 g chicken, 1 katori dal, 2 protein rotis',660,54],s:['Jeera makhana + chaas','30 g makhana, 1 glass chaas',190,6],d:['Moong dal khichdi + curd','1.5 katori khichdi with veg, 200 g curd',480,22]},
-  {b:['Egg bhurji with spinach + toast','2 eggs + 2 whites, 2 multigrain toasts, whey in water',500,49],l:['Soya chunk sabzi + chole + mixed veg','40 g soya (dry weight), 1 katori chole, 2 protein rotis',650,40],s:['Chaas + almonds + fruit','1 glass chaas, 8 almonds, 1 fruit',200,5],d:['Chicken and veg stew + 1 roti','150 g chicken, plenty of veg',430,40]},
-  {b:['Overnight oats + 2 boiled eggs','40 g oats, almond milk, 1 scoop whey, chia, half a banana',550,45],l:['Egg curry + dal + beans','2 eggs + 2 whites, 1 katori dal, 2 protein rotis',640,37],s:['Sprouts chaat','1 bowl with cucumber and coriander',150,9],d:['Grilled fish + stir-fried veg','200 g fish, 1 roti',450,42]},
-  {b:['Besan chilla + curd','2 chillas, 150 g curd, whey in water',470,42],l:['Chicken keema with peas + dal + cabbage','130 g keema, 1 katori dal, 2 protein rotis',670,47],s:['Roasted chana + apple','30 g chana, 1 apple',190,7],d:['Clear chicken soup + sautéed veg + 1 roti','150 g chicken in the soup',440,38]},
-  {b:['Moong dal chilla + curd','2 chillas, 150 g curd, whey in water',470,44],l:['Rajma + jeera rice + cucumber raita','1.5 katori rajma, small rice, 150 g curd raita, veg',650,26],s:['Jeera makhana + chaas + fruit','30 g makhana, 1 glass chaas, 1 fruit',260,6],d:['Tandoori chicken + sautéed veg','200 g chicken, capsicum, beans, zucchini',450,50]},
-  {b:['Overnight oats + 2 boiled eggs','40 g oats, almond milk, 1 scoop whey, chia, half a banana',550,45],l:['Treat meal','Your pick, moderate portion. Nothing deep-fried or very rich',700,25],s:['Seasonal fruit + whey shake','1 fruit, 1 scoop whey in water or chaas',200,25],d:['Moong dal khichdi + curd','1.5 katori khichdi with veg, 200 g curd',480,22]}
-];
+var FUEL_KCAL=2000, FUEL_P=130, WATER_ML=3000;
+var SLOTS=[['b','Breakfast','Morning'],['m','Mid-morning','Fruit and nuts'],['l','Lunch','Mild seasoning'],['s','Evening snack','Planned'],['d','Dinner','3 hours before bed']];
+var DAY={ // Each meal: [name, portion, kcal estimate, protein g estimate]
+  b:['Protein overnight oats','40 g rolled oats, 1 scoop whey, 100 g low-fat curd, 5 g chia, 50 to 75 ml water or low-fat milk',330,34],
+  m:['Banana or papaya + almonds','1 banana or 150 g papaya, 4 almonds',140,3],
+  l:['Chicken, moong dal and brown rice','150 g chicken breast (raw weight), 150 g cooked dal, 40 g rice (dry), cooked veg, 50 g low-fat curd',575,50],
+  s:['Roasted chana + curd','30 g roasted chana, 100 g low-fat curd',150,10],
+  d:['Chicken, vegetables and sweet potato','150 g chicken breast (raw weight), 150 to 200 g cooked veg, 150 g sweet potato or 2 small chapatis, minimal oil',425,39]};
+var MEALS=[DAY,DAY,DAY,DAY,DAY,DAY,DAY];
+var WATER=[['7:00 am',400],['9:30 am',400],['12:00 pm',400],['2:30 pm',400],['5:00 pm',400],['7:00 pm',400],['8:30 pm',400],['9:30 pm',200]];
 
 const PAT={smsq:'squat',lp:'legpress',dbss:'split',lext:'legext',pallof:'pallof',smb:'bench',crow:'row',dbsp:'ohp',clat:'lateral',prc:'curl',rpd:'pushdown',smht:'thrust',dbrdl:'hinge',lcurl:'legcurl',cpt:'hinge',calf:'calf',dbug:'deadbug',lpd:'pulldown',smi:'incline',csdr:'csrow',fpull:'facepull',pdeck:'fly',icurl:'curl',ohtri:'ohtri'};
 const COL={lift:'var(--lift)',run:'var(--run)',rest:'var(--rest)'};
@@ -588,26 +594,33 @@ const fuelOf=k=>{const l=L(k,false);return (l&&l.fuel)||{m:{},x:0};};
 const mealP=k=>{const f=fuelOf(k),day=MEALS[dow(k)];return SLOTS.reduce((a,s)=>a+(f.m[s[0]]?day[s[0]][3]:0),0);};
 const fuelP=k=>Math.max(0,mealP(k)+(fuelOf(k).x||0));
 const fuelMeals=k=>{const f=fuelOf(k);return SLOTS.filter(s=>f.m[s[0]]).length;};
+const waterMl=k=>{const w=fuelOf(k).w||{};return WATER.reduce((a,x,i)=>a+(w[i]?x[1]:0),0);};
 function fuelSync(k){const l=L(k);l.basics=l.basics||{};const hit=fuelP(k)>=FUEL_P,was=!!l.basics.protein;l.basics.protein=hit;save();if(hit&&!was){SFX.win();buzz([60,40,120]);toast(FUEL_P+' g protein hit');}}
 function renderFuel(){setAcc('var(--fuel)');const mon=addDays(TODAY,-dow(TODAY));if(!FD||FD<mon||FD>addDays(mon,6))FD=TODAY;
   const k=FD,day=MEALS[dow(k)],f=fuelOf(k),p=fuelP(k),d=dobj(k),fut=k>TODAY,l=L(k,false)||{basics:{}},b=l.basics||{};
   const planK=SLOTS.reduce((a,s)=>a+day[s[0]][2],0),planP=SLOTS.reduce((a,s)=>a+day[s[0]][3],0),nm=fuelMeals(k);
-  const LBL=['M','T','W','T','F','S','S'],MI=[IC.sun,IC.bowl,IC.leaf,IC.rest];let wr='',hits=0,meals=0,shut=0;
-  for(let i=0;i<7;i++){const kk=addDays(mon,i),n=fuelMeals(kk),hit=fuelP(kk)>=FUEL_P;if(hit)hits++;meals+=n;if(((L(kk,false)||{}).basics||{}).kitchen)shut++;
-    wr+=`<button class="wd ${hit?'done':''} ${kk===k?'today':''}" style="--c:var(--fuel)" data-fday="${kk}" aria-label="${dobj(kk).toLocaleDateString('en-GB',{weekday:'long'})}: ${n} of 4 meals${hit?', protein hit':''}"><span class="o">${hit?I(IC.check):`<b>${n}</b>`}</span>${LBL[i]}</button>`;}
-  const left=FUEL_P-p;const status=fut?`Menu preview. Planned: ${planP} g protein.`:left<=0?'Target hit. Anything more is a bonus.':nm===4?`${left} g to go. Top up with a curd bowl or a whey scoop.`:`${left} g to go. Tick meals as you eat them.`;
+  const LBL=['M','T','W','T','F','S','S'],MI=[IC.sun,IC.leaf,IC.bowl,IC.egg,IC.rest];let wr='',hits=0,meals=0,wet=0;const N=SLOTS.length,wml=waterMl(k),fw=f.w||{};
+  for(let i=0;i<7;i++){const kk=addDays(mon,i),n=fuelMeals(kk),hit=fuelP(kk)>=FUEL_P;if(hit)hits++;meals+=n;if(waterMl(kk)>=WATER_ML)wet++;
+    wr+=`<button class="wd ${hit?'done':''} ${kk===k?'today':''}" style="--c:var(--fuel)" data-fday="${kk}" aria-label="${dobj(kk).toLocaleDateString('en-GB',{weekday:'long'})}: ${n} of ${N} meals${hit?', protein hit':''}"><span class="o">${hit?I(IC.check):`<b>${n}</b>`}</span>${LBL[i]}</button>`;}
+  const left=FUEL_P-p;const status=fut?`Menu preview. Planned: ${planP} g protein.`:left<=0?'Target hit. Anything more is a bonus.':nm===N?`${left} g to go. Top up with a curd bowl or a whey scoop.`:`${left} g to go. Tick meals as you eat them.`;
   app.innerHTML=`<div class="view"><header class="top"><div><p class="hello">${FUEL_KCAL.toLocaleString()} kcal · ${FUEL_P} g protein</p><h1>Fuel<span>${k===TODAY?'Today':d.toLocaleDateString('en-GB',{weekday:'long'})} · ${d.toLocaleDateString('en-GB',{day:'numeric',month:'long'})} · about ${planK.toLocaleString()} kcal planned</span></h1></div></header>
     <div class="weekr">${wr}</div>
     <section class="panel"><span class="tag">Protein</span><div class="bignum" style="margin-top:14px">${p}<small>/ ${FUEL_P} g</small></div>
       <div class="prog big" role="progressbar" aria-valuemin="0" aria-valuemax="${FUEL_P}" aria-valuenow="${Math.min(p,FUEL_P)}"><i style="width:${Math.min(100,p/FUEL_P*100)}%"></i></div><p class="fnote">${status}</p>
       ${fut?'':`<div class="qa"><button class="pill" data-px="-10">−10 g</button><button class="pill" data-px="10">+10 g</button><button class="pill" data-px="24">Whey scoop +24</button><button class="pill" data-px="8">Curd bowl +8</button></div>`}</section>
-    <div class="sech"><h3>Meals</h3><span>${nm} of 4</span></div>
+    <div class="sech"><h3>Meals</h3><span>${nm} of ${N}</span></div>
     <div class="steps" style="margin-top:0">${SLOTS.map((s,i)=>{const m=day[s[0]],on=!!f.m[s[0]];return `<button class="stp ${on?'on':''}" data-meal="${s[0]}" aria-pressed="${on}"><span class="n">${I(on?IC.check:MI[i])}</span><span><span class="when">${s[1]} · ${s[2]}</span><b>${esc(m[0])}</b><small>${esc(m[1])}</small></span><span class="pg">${m[3]}<i>g</i></span></button>`;}).join('')}
       <button class="stp ${b.kitchen?'on':''}" data-fk="1" aria-pressed="${!!b.kitchen}"><span class="n">${I(b.kitchen?IC.check:IC.clock)}</span><span><span class="when">8:30 pm</span><b>Kitchen closed</b><small>After dinner, only fennel or chamomile tea</small></span><span></span></button></div>
+    <div class="sech"><h3>Water</h3><span>${(wml/1000).toFixed(1)} of ${WATER_ML/1000} L</span></div>
+    <section class="panel" style="padding:16px"><div class="prog big" style="margin-top:0;--acc:var(--run)" role="progressbar" aria-valuemin="0" aria-valuemax="${WATER_ML}" aria-valuenow="${wml}"><i style="width:${Math.min(100,wml/WATER_ML*100)}%"></i></div>
+      <div class="wgrid">${WATER.map((x,i)=>`<button class="wat ${fw[i]?'on':''}" data-wat="${i}" aria-pressed="${!!fw[i]}" aria-label="${x[0]}, ${x[1]} ml"><b>${x[1]}</b><small>${x[0]}</small></button>`).join('')}</div>
+      <p class="fnote" style="font-size:13px;color:var(--ink-3)">Ease off the late glasses if they disturb sleep or bring on reflux.</p></section>
+    <div class="sech"><h3>Daily targets</h3></div>
+    <div class="stats3"><div class="stat"><b>50<small>g max</small></b><span>Fat</span></div><div class="stat"><b>30<small>g</small></b><span>Fibre</span></div><div class="stat"><b>Flex</b><span>Carbs</span></div></div>
     <div class="sech"><h3>This week</h3></div>
-    <div class="stats3"><div class="stat"><b>${hits}<small>/ 7</small></b><span>Protein days</span></div><div class="stat"><b>${meals}<small>/ 28</small></b><span>Meals on plan</span></div><div class="stat"><b>${shut}<small>/ 7</small></b><span>Kitchen closed</span></div></div>
-    <div class="sech"><h3>Food rules</h3></div>
-    <section class="panel"><dl class="rules">${[['Oil','1 to 2 tsp a meal. Grill, tandoor or a thin home-style curry.'],['Plate','Half the plate is cooked vegetables at lunch and dinner.'],['Dinner','The lightest meal, done by 8:00 pm. Nothing rich, fried or very spicy at night.'],['Late meeting','Eat dinner before the meeting. After it, tea only.'],['Eating out','Tandoori or grilled starter, dal, plain roti, sautéed veg. Skip cream gravies and naan.'],['Treat','One meal a week, Sunday lunch, moderate portion.'],['Swaps','Any two days can be swapped. Use the protein buttons when a meal changes.'],['Steer','Losing faster than 0.5 kg a week: add 150 kcal. Flat for 2 weeks: trim 100 to 150.']].map(x=>`<div><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join('')}</dl></section></div>`;}
+    <div class="stats3"><div class="stat"><b>${hits}<small>/ 7</small></b><span>Protein days</span></div><div class="stat"><b>${meals}<small>/ ${N*7}</small></b><span>Meals on plan</span></div><div class="stat"><b>${wet}<small>/ 7</small></b><span>3 L days</span></div></div>
+    <div class="sech"><h3>Stomach-friendly rules</h3></div>
+    <section class="panel"><dl class="rules">${[['Portions','Smaller meals. Stop before you feel full.'],['After meals','Stay upright. No lying down and no hard training straight after eating.'],['Dinner','Finish at least 3 hours before lying down. Minimal oil.'],['Seasoning','Keep it mild. Limit chilli, heavy garam masala and heavy tadka.'],['Prioritise','Oats, banana, papaya, cucumber, moong dal, low-fat curd, cooked vegetables.'],['Limit','Only if they trigger symptoms: green chillies, citrus, tomato-heavy gravies, chocolate, a lot of tea or coffee, deep-fried or oily meals.'],['Swaps','Whey or curd brings on reflux: smaller portion, or have them separately. Chana causes gas: banana or curd instead.'],['Protein','Spread chicken, whey and curd across the day. Comfort comes before the protein number.'],['Night','Raise the head of the bed if reflux shows up at night.'],['7-day check','Note acidity, bloating, sleep quality and whether 130 g protein is reached. Review after a week.'],['Doctor','Reflux that persists despite these changes needs a doctor.']].map(x=>`<div><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join('')}</dl></section></div>`;}
 
 /* ================= PROGRESS ================= */
 function chartSVG(list){const Wd=320,H=160,pl=26,pr=6,pt=10,pb=20;const s0=dobj('2026-11-05');let end=new Date(s0);end.setDate(end.getDate()+112);
@@ -651,7 +664,7 @@ function renderPlan(){setAcc('var(--rest)');const N=['Monday','Tuesday','Wednesd
   const R=a=>`<section class="panel"><dl class="rules">${a.map(x=>`<div><dt>${x[0]}</dt><dd>${x[1]}</dd></div>`).join('')}</dl></section>`;
   app.innerHTML=`<div class="view"><header class="top"><div><p class="hello">4 strength · 2 treadmill · 1 rest</p><h1>The plan<span>Week ${weekOf(TODAY)} of ${WEEKS} · 9 am, about 60 min</span></h1></div></header>${days}
     <div class="sech"><h3>Training rules</h3></div>${R([['Progress','When every set hits the top of its rep range, add 1.25 to 2.5 kg a side.'],['Effort','Stop 1 to 2 reps short of failure. Form before load.'],['Lighter week','Week 5: two sets per exercise at the same weights.'],['Back','3-minute routine on waking. McGill big 3 in every warm-up. Nothing heavy in the first hour after waking.'],['Stop if','Back pain turns sharp or runs down the leg. See a physio.']])}
-    <div class="sech"><h3>Food</h3><span>about 1,900 kcal</span></div>${R([['Protein','130 g a day. The Fuel tab has the daily menu and the tally.'],['Timing','Lunch is the biggest meal. Dinner light, done by 8:00 pm. Kitchen closed by 8:30 pm.'],['Fat','Spread across 4 meals. No heavy fried or ghee-rich dinners.'],['Steer','Lose 0.25 to 0.4 kg a week. Faster: eat 150 kcal more. Flat for 2 weeks: 100 to 150 kcal less.'],['Check-in','Every 2 weeks: front, side and back photos, fasted, same light. Waist at the navel.']])}</div>`;}
+    <div class="sech"><h3>Food</h3><span>about 2,000 kcal</span></div>${R([['Protein','130 g a day. The Fuel tab has the daily menu and the tally.'],['Timing','Lunch is the biggest meal. Dinner light, at least 3 hours before bed. Kitchen closed by 8:30 pm.'],['Fat','50 g a day at most, spread across meals. No heavy fried or ghee-rich dinners.'],['Steer','Lose 0.25 to 0.4 kg a week. Faster: eat 150 kcal more. Flat for 2 weeks: 100 to 150 kcal less.'],['Check-in','Every 2 weeks: front, side and back photos, fasted, same light. Waist at the navel.']])}</div>`;}
 
 /* ================= SHEETS ================= */
 function weighSheet(){const list=bwList(),last=list[list.length-1];const v=S.bw[TODAY]!=null?S.bw[TODAY]:(last?last.kg:74);
@@ -674,8 +687,9 @@ document.addEventListener('click',ev=>{const t=ev.target.closest('button,summary
   if(t.dataset.step){const l=L(PL.k),g=t.dataset.step;l[g]=l[g]||{};l[g][t.dataset.i]=!l[g][t.dataset.i];save();l[g][t.dataset.i]?SFX.on():SFX.tap();return renderStage();}
   if(t.dataset.w){const i=document.getElementById('win');i.value=(Math.round((parseFloat(i.value||74)+ +t.dataset.w)*10)/10).toFixed(1);return SFX.tap();}
   if(t.dataset.fday){FD=t.dataset.fday;SFX.tap();return rer();}
-  if(t.dataset.meal||t.dataset.px||t.dataset.fk){if(FD>TODAY)return toast('That day has not started yet');const l=L(FD);l.fuel=l.fuel||{m:{},x:0};l.basics=l.basics||{};
+  if(t.dataset.meal||t.dataset.px||t.dataset.fk||t.dataset.wat){if(FD>TODAY)return toast('That day has not started yet');const l=L(FD);l.fuel=l.fuel||{m:{},x:0};l.basics=l.basics||{};
     if(t.dataset.fk){l.basics.kitchen=!l.basics.kitchen;save();l.basics.kitchen?(SFX.on(),buzz(20)):SFX.tap();return rer();}
+    if(t.dataset.wat){const w=l.fuel.w=l.fuel.w||{},i=t.dataset.wat,was=waterMl(FD)>=WATER_ML;w[i]=!w[i];save();w[i]?(SFX.on(),buzz(20)):SFX.tap();if(!was&&waterMl(FD)>=WATER_ML){SFX.win();toast('3 litres done');}return rer();}
     if(t.dataset.meal){const id=t.dataset.meal;l.fuel.m[id]=!l.fuel.m[id];l.fuel.m[id]?(SFX.on(),buzz(20)):SFX.tap();}
     else{l.fuel.x=Math.max(-mealP(FD),(l.fuel.x||0)+ +t.dataset.px);SFX.tap();}
     fuelSync(FD);return rer();}
